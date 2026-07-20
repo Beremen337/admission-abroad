@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5,43 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>Дисциплина Тимбула</title>
     <style>
+        /* ===== RESET ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
+
         body {
-            background: #0b1320;
-            color: #d1d9e6;
+            background: #0f1929;
+            color: #d6e2f0;
             font-family: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
-            padding: 10px;
+            padding: 12px;
             max-width: 700px;
             margin: 0 auto;
             min-height: 100vh;
-            background-image: radial-gradient(circle at 20% 30%, #162033 0%, #0b1320 90%);
+            background-image:
+                radial-gradient(ellipse at 10% 20%, #1a2c44 0%, #0f1929 70%);
             font-size: 15px;
             line-height: 1.5;
+            transition: background 0.3s;
         }
+
+        /* ===== КАРТОЧКИ ===== */
         .card {
-            background: rgba(18, 28, 42, 0.92);
-            backdrop-filter: blur(4px);
-            border-radius: 16px;
-            padding: 14px 16px;
-            border: 1px solid #283a4f;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+            background: rgba(22, 36, 54, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 16px 18px;
+            border: 1px solid rgba(70, 120, 180, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.03);
             margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(70, 140, 200, 0.25);
+            box-shadow: 0 8px 40px rgba(0, 20, 50, 0.4);
         }
         .card h2 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            color: #7fa9c9;
+            color: #8dbae0;
             display: flex;
             align-items: center;
             gap: 8px;
             margin-bottom: 10px;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-size: 12px;
+            opacity: 0.8;
         }
+
+        /* ===== ХЕДЕР ===== */
         .header {
             display: flex;
             justify-content: space-between;
@@ -49,78 +67,98 @@
             flex-wrap: wrap;
             gap: 6px;
             margin-bottom: 14px;
+            padding: 6px 4px;
         }
         .header h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
-            color: #8bb9e0;
-            background: linear-gradient(135deg, #6a9bc7, #8bb9e0);
+            color: #b5d6f0;
+            background: linear-gradient(135deg, #7ab0d8, #b5d6f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
+            text-shadow: 0 0 40px rgba(90, 160, 220, 0.1);
         }
         .header .badge-day {
-            background: #1a2a3e;
-            padding: 4px 14px;
+            background: rgba(26, 44, 68, 0.6);
+            backdrop-filter: blur(8px);
+            padding: 4px 16px;
             border-radius: 30px;
             font-size: 13px;
-            color: #7fa9c9;
-            border: 1px solid #283a4f;
+            color: #8dbae0;
+            border: 1px solid rgba(70, 120, 180, 0.2);
+            font-weight: 500;
         }
+
+        /* ===== ТАБЫ ===== */
         .tab-bar {
             display: flex;
             gap: 4px;
-            background: rgba(18, 28, 42, 0.6);
-            border-radius: 14px;
+            background: rgba(18, 30, 48, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
             padding: 4px;
-            border: 1px solid #283a4f;
+            border: 1px solid rgba(70, 120, 180, 0.1);
             margin-bottom: 14px;
             overflow-x: auto;
         }
         .tab-btn {
             background: transparent;
             border: none;
-            color: #6a7f99;
-            padding: 8px 12px;
-            border-radius: 10px;
+            color: #6a8aaa;
+            padding: 8px 14px;
+            border-radius: 12px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             white-space: nowrap;
             flex: 1;
             min-width: 50px;
         }
         .tab-btn.active {
-            background: #1a2a3e;
-            color: #8bb9e0;
-            box-shadow: 0 2px 10px rgba(60, 130, 200, 0.15);
+            background: rgba(40, 80, 130, 0.3);
+            color: #b5d6f0;
+            box-shadow: 0 2px 20px rgba(60, 130, 200, 0.1);
         }
+        .tab-btn:hover {
+            color: #b5d6f0;
+        }
+
         .tab-content {
             display: none;
-            animation: fadeUp 0.3s ease;
+            animation: fadeIn 0.4s ease;
         }
         .tab-content.active {
             display: block;
         }
-        @keyframes fadeUp {
+
+        @keyframes fadeIn {
             0% {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(12px) scale(0.98);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
+
+        /* ===== ЧЕК-ЛИСТ ===== */
         .checklist label {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 5px 0;
+            padding: 6px 4px;
             font-size: 14px;
             cursor: pointer;
-            border-bottom: 1px solid #1a2a3e;
+            border-bottom: 1px solid rgba(40, 80, 130, 0.1);
+            transition: all 0.2s;
+            border-radius: 8px;
+        }
+        .checklist label:hover {
+            background: rgba(40, 80, 130, 0.08);
+            padding-left: 8px;
         }
         .checklist label:last-child {
             border-bottom: none;
@@ -128,123 +166,345 @@
         .checklist input[type="checkbox"] {
             width: 20px;
             height: 20px;
-            accent-color: #5a8db5;
+            accent-color: #5a9ac8;
             cursor: pointer;
             flex-shrink: 0;
+            border-radius: 6px;
+            transition: all 0.2s;
         }
         .checklist input[type="checkbox"]:checked+span {
             text-decoration: line-through;
-            color: #5a7a99;
-            opacity: 0.7;
+            color: #5a7a9a;
+            opacity: 0.6;
         }
-        .btn {
-            background: #1a2a3e;
-            border: 1px solid #283a4f;
-            color: #d1d9e6;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: 0.2s;
+        .checklist .label-text {
+            flex: 1;
         }
-        .btn:hover {
-            background: #253a52;
-        }
-        .btn-sm {
-            background: #1a2a3e;
-            border: none;
-            color: #7fa9c9;
-            padding: 2px 12px;
+        .checklist .reset-btn {
+            background: transparent;
+            border: 1px solid rgba(70, 120, 180, 0.15);
+            color: #6a8aaa;
+            padding: 2px 14px;
             border-radius: 30px;
             font-size: 11px;
             cursor: pointer;
             transition: 0.2s;
+            margin-left: auto;
         }
-        .btn-sm:hover {
-            background: #253a52;
+        .checklist .reset-btn:hover {
+            background: rgba(40, 80, 130, 0.15);
+            color: #b5d6f0;
         }
-        .btn-sm.success {
-            color: #6a9bc7;
-        }
-        .btn-sm.danger {
-            color: #b57a7a;
-        }
-        .btn-sm.danger:hover {
-            background: #2d1e1e;
-        }
-        .btn-export {
-            background: #1a2d2a;
-            border: 1px solid #2a4a3a;
-            color: #6aad8a;
-        }
-        .btn-export:hover {
-            background: #2a4a3a;
-        }
-        .flex-center {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 8px;
-        }
+
+        /* ===== СЧЁТЧИКИ ===== */
         .stat-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 8px;
         }
         .stat-item {
-            background: #111d2b;
-            border-radius: 12px;
-            padding: 10px 6px;
+            background: rgba(16, 30, 50, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 14px;
+            padding: 12px 8px;
             text-align: center;
-            border: 1px solid #1a2a3e;
+            border: 1px solid rgba(70, 120, 180, 0.08);
+            transition: all 0.3s;
+        }
+        .stat-item:hover {
+            border-color: rgba(70, 120, 180, 0.2);
         }
         .stat-item .num {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
-            color: #8bb9e0;
+            color: #b5d6f0;
+            text-shadow: 0 0 30px rgba(90, 160, 220, 0.1);
         }
         .stat-item .label {
             font-size: 10px;
-            color: #5a7a99;
+            color: #5a7a9a;
             margin-top: 2px;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
         }
         .stat-item .controls {
             display: flex;
             gap: 4px;
             justify-content: center;
-            margin-top: 4px;
+            margin-top: 6px;
             align-items: center;
         }
         .stat-item input[type="number"] {
-            width: 44px;
-            background: #0b1420;
-            border: 1px solid #1a2a3e;
-            color: #d1d9e6;
-            border-radius: 6px;
-            padding: 2px 4px;
+            width: 48px;
+            background: rgba(8, 18, 34, 0.6);
+            border: 1px solid rgba(70, 120, 180, 0.15);
+            color: #d6e2f0;
+            border-radius: 8px;
+            padding: 4px 6px;
             font-size: 14px;
             text-align: center;
+            transition: all 0.2s;
         }
         .stat-item input[type="number"]:focus {
-            outline: 1px solid #5a8db5;
+            outline: none;
+            border-color: rgba(70, 140, 200, 0.4);
+            box-shadow: 0 0 20px rgba(60, 130, 200, 0.05);
         }
-        .progress-bar {
-            background: #111d2b;
+
+        .btn-sm {
+            background: rgba(40, 80, 130, 0.2);
+            border: none;
+            color: #7ab0d8;
+            padding: 3px 12px;
             border-radius: 30px;
-            height: 8px;
-            margin: 8px 0 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+        .btn-sm:hover {
+            background: rgba(40, 80, 130, 0.35);
+            color: #b5d6f0;
+        }
+        .btn-sm.success {
+            color: #6aad8a;
+        }
+        .btn-sm.success:hover {
+            background: rgba(40, 100, 70, 0.25);
+        }
+        .btn-sm.danger {
+            color: #b57a7a;
+        }
+        .btn-sm.danger:hover {
+            background: rgba(100, 40, 40, 0.2);
+        }
+
+        .btn {
+            background: rgba(40, 80, 130, 0.15);
+            border: 1px solid rgba(70, 120, 180, 0.15);
+            color: #d6e2f0;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+        .btn:hover {
+            background: rgba(40, 80, 130, 0.3);
+            border-color: rgba(70, 140, 200, 0.3);
+        }
+        .btn-export {
+            background: rgba(40, 100, 70, 0.15);
+            border-color: rgba(70, 160, 120, 0.15);
+            color: #6aad8a;
+        }
+        .btn-export:hover {
+            background: rgba(40, 100, 70, 0.25);
+        }
+
+        .flex-center {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        /* ===== ПРОГРЕСС АНГЛИЙСКОГО (НОВЫЙ) ===== */
+        .eng-progress {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 4px 0;
+        }
+        .eng-progress .level-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+        .eng-progress .level-row .level-label {
+            width: 28px;
+            font-weight: 600;
+            color: #5a7a9a;
+        }
+        .eng-progress .level-row .level-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(16, 30, 50, 0.5);
+            border-radius: 30px;
             overflow: hidden;
+            position: relative;
         }
-        .progress-fill {
-            height: 8px;
+        .eng-progress .level-row .level-bar .fill {
+            height: 100%;
             border-radius: 30px;
-            background: linear-gradient(90deg, #4a7a9f, #8bb9e0);
-            width: 15%;
-            transition: width 0.6s ease;
+            background: linear-gradient(90deg, #3a7a9a, #7ab0d8);
+            transition: width 0.8s ease;
+            width: 0%;
         }
+        .eng-progress .level-row .level-bar .fill.b1 {
+            background: linear-gradient(90deg, #4a6a8a, #7ab0d8);
+        }
+        .eng-progress .level-row .level-bar .fill.b2 {
+            background: linear-gradient(90deg, #5a8aaa, #8ac0e8);
+        }
+        .eng-progress .level-row .level-bar .fill.c1 {
+            background: linear-gradient(90deg, #6a9aba, #9ad0f0);
+        }
+        .eng-progress .level-row .level-percent {
+            width: 36px;
+            text-align: right;
+            font-size: 12px;
+            color: #5a7a9a;
+            font-weight: 500;
+        }
+        .eng-progress .current-level {
+            text-align: center;
+            font-size: 13px;
+            color: #8dbae0;
+            padding: 4px 0;
+            background: rgba(40, 80, 130, 0.08);
+            border-radius: 8px;
+        }
+        .eng-progress .current-level strong {
+            color: #b5d6f0;
+        }
+        .eng-progress .btn-group {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        /* ===== ИТОГИ ===== */
+        .history-table {
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+        .history-table th {
+            text-align: left;
+            color: #5a7a9a;
+            font-weight: 500;
+            padding: 6px 4px;
+            border-bottom: 1px solid rgba(70, 120, 180, 0.08);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .history-table td {
+            padding: 6px 4px;
+            border-bottom: 1px solid rgba(70, 120, 180, 0.05);
+        }
+        .history-table tr:last-child td {
+            border-bottom: none;
+        }
+        .history-table .day-row {
+            transition: 0.2s;
+        }
+        .history-table .day-row:hover {
+            background: rgba(40, 80, 130, 0.05);
+        }
+        .weekday {
+            color: #5a7a9a;
+            font-size: 11px;
+        }
+        .check-icon {
+            color: #6aad8a;
+        }
+
+        /* ===== СЕРИЯ ===== */
+        .streak-box {
+            background: rgba(16, 30, 50, 0.4);
+            border-radius: 14px;
+            padding: 12px 16px;
+            text-align: center;
+            border: 1px solid rgba(70, 120, 180, 0.08);
+        }
+        .streak-box .streak-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #b5d6f0;
+            text-shadow: 0 0 40px rgba(90, 160, 220, 0.15);
+        }
+        .streak-box .streak-label {
+            font-size: 12px;
+            color: #5a7a9a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .streak-box .streak-days {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .streak-box .streak-days .day-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            background: rgba(40, 80, 130, 0.15);
+            border: 1px solid rgba(70, 120, 180, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: #5a7a9a;
+            transition: all 0.3s;
+        }
+        .streak-box .streak-days .day-dot.done {
+            background: rgba(60, 160, 120, 0.2);
+            border-color: rgba(60, 160, 120, 0.2);
+            color: #6aad8a;
+        }
+        .streak-box .streak-days .day-dot.today {
+            border-color: #5a9ac8;
+            box-shadow: 0 0 20px rgba(60, 130, 200, 0.1);
+        }
+
+        .motivation-text {
+            font-size: 17px;
+            font-weight: 500;
+            color: #b5d6f0;
+            text-align: center;
+            padding: 14px;
+            background: rgba(26, 44, 68, 0.3);
+            border-radius: 14px;
+            border-left: 3px solid #5a8db5;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .footer {
+            margin-top: 14px;
+            font-size: 12px;
+            color: #4a5a6a;
+            text-align: center;
+            border-top: 1px solid rgba(70, 120, 180, 0.05);
+            padding-top: 12px;
+        }
+        .footer strong {
+            color: #7fa9c9;
+        }
+
+        .copy-msg {
+            color: #6aad8a;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 4px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .copy-msg.show {
+            opacity: 1;
+        }
+
         .country-row {
             display: flex;
             flex-wrap: wrap;
@@ -255,26 +515,27 @@
             display: flex;
             align-items: center;
             gap: 4px;
-            padding: 2px 8px;
-            background: #111d2b;
+            padding: 2px 10px;
+            background: rgba(16, 30, 50, 0.3);
             border-radius: 30px;
-            border: 1px solid #1a2a3e;
+            border: 1px solid rgba(70, 120, 180, 0.08);
         }
         .badge {
             font-size: 10px;
             padding: 1px 8px;
             border-radius: 30px;
-            background: #1a2a3e;
-            color: #5a7a99;
+            background: rgba(26, 44, 68, 0.4);
+            color: #5a7a9a;
         }
         .badge.green {
-            background: #1a2d2a;
+            background: rgba(40, 100, 70, 0.2);
             color: #6aad8a;
         }
         .badge.orange {
-            background: #2d2a1a;
+            background: rgba(100, 80, 40, 0.2);
             color: #c9a86a;
         }
+
         .map-row {
             display: flex;
             flex-wrap: wrap;
@@ -296,15 +557,15 @@
             min-width: 36px;
         }
         .map-point:hover {
-            background: #1a2a3e;
-            color: #8bb9e0;
+            background: rgba(40, 80, 130, 0.1);
+            color: #8dbae0;
         }
         .map-point .dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
             background: #4a7a9f;
-            box-shadow: 0 0 12px rgba(60, 130, 200, 0.2);
+            box-shadow: 0 0 16px rgba(60, 130, 200, 0.1);
         }
         .map-point .dot.green {
             background: #5a9a7a;
@@ -321,86 +582,30 @@
             display: flex;
             align-items: center;
         }
-        .motivation-text {
-            font-size: 17px;
-            font-weight: 500;
-            color: #8bb9e0;
-            text-align: center;
-            padding: 12px;
-            background: rgba(26, 42, 62, 0.4);
-            border-radius: 12px;
-            border-left: 3px solid #5a8db5;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .footer {
-            margin-top: 14px;
-            font-size: 12px;
-            color: #4a5a6a;
-            text-align: center;
-            border-top: 1px solid #162033;
-            padding-top: 12px;
-        }
-        .footer strong {
-            color: #7fa9c9;
-        }
-        .copy-msg {
-            color: #6aad8a;
-            font-size: 13px;
-            text-align: center;
-            margin-top: 4px;
-            opacity: 0;
-            transition: 0.3s;
-        }
-        .copy-msg.show {
-            opacity: 1;
-        }
+
         .workout-plan {
             font-size: 13px;
-            color: #7fa9c9;
-            background: #111d2b;
-            border-radius: 10px;
-            padding: 10px;
-            border: 1px solid #1a2a3e;
+            color: #8dbae0;
+            background: rgba(16, 30, 50, 0.3);
+            border-radius: 12px;
+            padding: 10px 12px;
+            border: 1px solid rgba(70, 120, 180, 0.06);
         }
         .workout-plan strong {
-            color: #8bb9e0;
+            color: #b5d6f0;
         }
-        .history-table {
-            width: 100%;
-            font-size: 13px;
-            border-collapse: collapse;
-        }
-        .history-table th {
-            text-align: left;
-            color: #5a7a99;
-            font-weight: 500;
-            padding: 4px 2px;
-            border-bottom: 1px solid #1a2a3e;
-        }
-        .history-table td {
-            padding: 4px 2px;
-            border-bottom: 1px solid #1a2a3e;
-        }
-        .history-table tr:last-child td {
-            border-bottom: none;
-        }
-        .weekday {
-            color: #5a7a99;
-            font-size: 12px;
-        }
+
         @media (max-width: 480px) {
             body {
-                padding: 6px;
+                padding: 8px;
                 font-size: 14px;
             }
             .card {
-                padding: 10px 12px;
+                padding: 12px 14px;
+                border-radius: 16px;
             }
             .header h1 {
-                font-size: 22px;
+                font-size: 20px;
             }
             .stat-grid {
                 grid-template-columns: 1fr 1fr;
@@ -408,17 +613,14 @@
             }
             .tab-btn {
                 font-size: 12px;
-                padding: 6px 8px;
-                min-width: 40px;
+                padding: 6px 10px;
             }
             .motivation-text {
                 font-size: 15px;
                 min-height: 50px;
             }
-            .map-point {
-                font-size: 10px;
-                min-width: 30px;
-                padding: 2px 4px;
+            .streak-box .streak-number {
+                font-size: 28px;
             }
             .history-table {
                 font-size: 12px;
@@ -430,7 +632,6 @@
             }
             .country-row {
                 font-size: 12px;
-                gap: 4px 6px;
             }
         }
     </style>
@@ -439,7 +640,7 @@
 
     <!-- ===== ХЕДЕР ===== -->
     <div class="header">
-        <h1>⚡ Дисциплина Тимбула</h1>
+        <h1>✦ Дисциплина Тимбула</h1>
         <span class="badge-day" id="dayDisplay">День 1</span>
     </div>
 
@@ -457,22 +658,22 @@
     <div id="tab-main" class="tab-content active">
         <div class="card checklist">
             <h2>✅ Чек-лист
-                <button class="btn-sm" onclick="resetChecklist()" style="margin-left:auto;">🔄 сброс</button>
+                <button class="reset-btn" onclick="resetChecklist()">🔄 сброс</button>
             </h2>
-            <label><input type="checkbox" /> <span>Тренировка (по плану)</span></label>
-            <label><input type="checkbox" /> <span>Полезное питание (белок/калории)</span></label>
-            <label><input type="checkbox" /> <span>Новые слова (минимум 5)</span></label>
-            <label><input type="checkbox" /> <span>Калории и белок записаны</span></label>
-            <label><input type="checkbox" /> <span>Разговорный ролик на английском</span></label>
+            <label><input type="checkbox" class="check-item" /> <span class="label-text">Тренировка (по плану)</span></label>
+            <label><input type="checkbox" class="check-item" /> <span class="label-text">Полезное питание (белок/калории)</span></label>
+            <label><input type="checkbox" class="check-item" /> <span class="label-text">Новые слова (минимум 5)</span></label>
+            <label><input type="checkbox" class="check-item" /> <span class="label-text">Калории и белок записаны</span></label>
+            <label><input type="checkbox" class="check-item" /> <span class="label-text">Разговорный ролик на английском</span></label>
         </div>
 
         <div class="card">
             <h2>🏋️ План тренировок (через день)</h2>
             <div class="workout-plan">
                 <div><strong>День 1 (грудные + трицепс):</strong> отжимания широкие 3×12, отжимания узкие 3×10, V-скручивания 3×15, планка 3×45 сек</div>
-                <div style="margin-top:6px;"><strong>День 2 (спина + бицепс):</strong> тяга гантели к поясу 3×12, обратные отжимания от стула 3×12, подъем гантелей на бицепс 3×10, гиперэкстензия (на полу) 3×15</div>
-                <div style="margin-top:6px;"><strong>День 3 (пресс + плечи):</strong> скручивания 3×20, V-скручивания 3×15, подъем ног лёжа 3×12, отжимания с подъемом таза (плечи) 3×10, планка на вытянутых руках 3×40 сек</div>
-                <div style="margin-top:6px;color:#5a7a99;font-size:12px;">🔄 Повторять цикл · Вс — отдых · Кардио — прогулка каждый день</div>
+                <div style="margin-top:5px;"><strong>День 2 (спина + бицепс):</strong> тяга гантели к поясу 3×12, обратные отжимания от стула 3×12, подъем гантелей на бицепс 3×10, гиперэкстензия (на полу) 3×15</div>
+                <div style="margin-top:5px;"><strong>День 3 (пресс + плечи):</strong> скручивания 3×20, V-скручивания 3×15, подъем ног лёжа 3×12, отжимания с подъемом таза (плечи) 3×10, планка на вытянутых руках 3×40 сек</div>
+                <div style="margin-top:5px;color:#5a7a9a;font-size:12px;">🔄 Повторять цикл · Вс — отдых · Кардио — прогулка каждый день</div>
             </div>
         </div>
 
@@ -484,23 +685,37 @@
                 <span class="country">🇸🇰 Словакия <span class="badge">запас</span> €7,500</span>
                 <span class="country">🇨🇳 Китай <span class="badge">сложно</span> $2,400</span>
             </div>
-            <div style="font-size:13px;color:#5a7a99;margin-top:4px;">
-                ✅ Бакалавриат: <strong style="color:#8bb9e0;">EMU (IT Security)</strong> · ⏳ Магистратура: <strong style="color:#8bb9e0;">Турин / Падуя</strong>
+            <div style="font-size:13px;color:#5a7a9a;margin-top:4px;">
+                ✅ Бакалавриат: <strong style="color:#b5d6f0;">EMU (IT Security)</strong> · ⏳ Магистратура: <strong style="color:#b5d6f0;">Турин / Падуя</strong>
             </div>
         </div>
 
         <div class="card">
             <h2>🇬🇧 Английский B1 → B2</h2>
-            <div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:#5a7a99;">
-                <span>Артикли <span class="badge">1–2 нед</span></span>
-                <span>Past Continuous <span class="badge">3–4 нед</span></span>
-                <span>Conditionals <span class="badge">5–6 нед</span></span>
-                <span>Предлоги <span class="badge">7–8 нед</span></span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:15%;"></div></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span style="font-size:12px;color:#5a7a99;">Прогресс: ~<span id="progressPercent">15</span>%</span>
-                <button class="btn" onclick="addProgress()">➕ 5%</button>
+            <div class="eng-progress">
+                <div class="current-level">
+                    Текущий уровень: <strong id="currentLevelDisplay">B1</strong> · Прогресс до B2: <strong id="levelProgressText">0%</strong>
+                </div>
+                <div class="level-row">
+                    <span class="level-label">B1</span>
+                    <div class="level-bar"><div class="fill b1" id="b1Fill" style="width:100%;"></div></div>
+                    <span class="level-percent" id="b1Percent">100%</span>
+                </div>
+                <div class="level-row">
+                    <span class="level-label">B2</span>
+                    <div class="level-bar"><div class="fill b2" id="b2Fill" style="width:0%;"></div></div>
+                    <span class="level-percent" id="b2Percent">0%</span>
+                </div>
+                <div class="level-row">
+                    <span class="level-label">C1</span>
+                    <div class="level-bar"><div class="fill c1" id="c1Fill" style="width:0%;"></div></div>
+                    <span class="level-percent" id="c1Percent">0%</span>
+                </div>
+                <div class="btn-group">
+                    <button class="btn" onclick="addProgress(5)">➕ 5%</button>
+                    <button class="btn" onclick="addProgress(10)">➕ 10%</button>
+                    <button class="btn-sm" onclick="resetProgress()" style="color:#b57a7a;">Сброс</button>
+                </div>
             </div>
         </div>
     </div>
@@ -545,10 +760,10 @@
                 </div>
             </div>
             <div class="flex-center" style="margin-top:12px;">
-                <button class="btn btn-export" onclick="saveDayStats()">💾 Записать день в базу</button>
-                <button class="btn btn-sm danger" onclick="resetStats()">🔄 Сбросить счётчики</button>
+                <button class="btn btn-export" onclick="saveDayStats()">💾 Записать день</button>
+                <button class="btn-sm danger" onclick="resetStats()">🔄 Сбросить счётчики</button>
             </div>
-            <div id="saveMsg" style="color:#6aad8a;font-size:13px;text-align:center;margin-top:4px;opacity:0;transition:0.3s;">✅ Данные сохранены!</div>
+            <div id="saveMsg" class="copy-msg">✅ Данные сохранены!</div>
         </div>
     </div>
 
@@ -559,15 +774,25 @@
             <h2>📈 Итоги по дням</h2>
             <div style="overflow-x:auto;">
                 <table class="history-table" id="historyTable">
-                    <thead><tr><th>День</th><th>🔥</th><th>🥩</th><th>📚</th><th>🏋️</th></tr></thead>
+                    <thead><tr><th>День</th><th>🔥</th><th>🥩</th><th>📚</th><th>🏋️</th><th>✅</th></tr></thead>
                     <tbody id="historyBody"></tbody>
                 </table>
             </div>
             <div class="flex-center" style="margin-top:10px;">
-                <button class="btn btn-sm danger" onclick="clearHistory()">🗑️ Очистить историю</button>
+                <button class="btn-sm danger" onclick="clearHistory()">🗑️ Очистить</button>
                 <button class="btn btn-export" onclick="exportHistory()">📋 Экспорт</button>
             </div>
-            <div id="historyMsg" style="color:#6aad8a;font-size:13px;text-align:center;margin-top:4px;opacity:0;transition:0.3s;">✅ Скопировано!</div>
+            <div id="historyMsg" class="copy-msg">✅ Скопировано!</div>
+        </div>
+
+        <!-- ===== СЕРИЯ ДИСЦИПЛИНЫ ===== -->
+        <div class="card">
+            <h2>🔥 Серия дисциплины</h2>
+            <div class="streak-box">
+                <div class="streak-number" id="streakCount">0</div>
+                <div class="streak-label">дней подряд</div>
+                <div class="streak-days" id="streakDays"></div>
+            </div>
         </div>
     </div>
 
@@ -576,7 +801,7 @@
     <div id="tab-map" class="tab-content">
         <div class="card">
             <h2>🗺️ Карта вузов</h2>
-            <div style="background:#111d2b;border-radius:12px;padding:10px;border:1px solid #1a2a3e;">
+            <div style="background:rgba(16,30,50,0.3);border-radius:14px;padding:10px;border:1px solid rgba(70,120,180,0.06);">
                 <div class="map-row">
                     <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMU</a>
                     <a href="https://www.uon.ac.cy/en/" target="_blank" class="map-point"><div class="dot green"></div>UON</a>
@@ -584,7 +809,7 @@
                     <a href="https://www.ciu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>CIU</a>
                     <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMI</a>
                 </div>
-                <div style="text-align:center;color:#5a7a99;font-size:12px;margin:6px 0;">⬇️ Твой маршрут ⬇️</div>
+                <div style="text-align:center;color:#5a7a9a;font-size:12px;margin:6px 0;">⬇️ Твой маршрут ⬇️</div>
                 <div class="map-row">
                     <span class="map-point" style="cursor:default;"><div class="dot green"></div>🇨🇾 Кипр</span>
                     <span class="map-line">→</span>
@@ -594,7 +819,7 @@
                     <span class="map-line">→</span>
                     <a href="https://www.stuba.sk/english.html" target="_blank" class="map-point"><div class="dot gray"></div>🇸🇰 STU</a>
                 </div>
-                <div style="font-size:12px;color:#5a7a99;text-align:center;margin-top:4px;">📍 <strong style="color:#8bb9e0;">Кипр → Италия</strong></div>
+                <div style="font-size:12px;color:#5a7a9a;text-align:center;margin-top:4px;">📍 <strong style="color:#b5d6f0;">Кипр → Италия</strong></div>
             </div>
         </div>
     </div>
@@ -609,8 +834,8 @@
                 <button class="btn" onclick="newMotivation()">🎲 Мантра</button>
                 <button class="btn" onclick="uglyMotivation()">💀 Угар</button>
             </div>
-            <div style="text-align:center;font-size:14px;color:#5a7a99;margin-top:8px;">
-                💪 Побеждено хуёвых мыслей: <strong id="motivationCounter" style="color:#8bb9e0;">0</strong>
+            <div style="text-align:center;font-size:14px;color:#5a7a9a;margin-top:8px;">
+                💪 Побеждено хуёвых мыслей: <strong id="motivationCounter" style="color:#b5d6f0;">0</strong>
                 <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-left:6px;">➕</button>
             </div>
         </div>
@@ -644,6 +869,7 @@
             });
         });
 
+        // ==========================================================
         // ===== ЧЕК-ЛИСТ =====
         function loadChecklist() {
             document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
@@ -666,21 +892,55 @@
             }
         }
 
-        // ===== ПРОГРЕСС АНГЛИЙСКОГО =====
-        let progress = parseInt(localStorage.getItem('progress')) || 15;
-        if (progress > 95) progress = 95;
-        document.getElementById('progressFill').style.width = progress + '%';
-        document.getElementById('progressPercent').textContent = progress;
+        // ==========================================================
+        // ===== НОВЫЙ ПРОГРЕСС АНГЛИЙСКОГО =====
+        // Храним прогресс как число от 0 до 100 (где 0 = B1, 100 = C1)
+        let engProgress = parseInt(localStorage.getItem('engProgress')) || 0;
 
-        function addProgress() {
-            if (progress < 95) {
-                progress += 5;
-                localStorage.setItem('progress', progress);
-                document.getElementById('progressFill').style.width = progress + '%';
-                document.getElementById('progressPercent').textContent = progress;
+        function updateEngDisplay() {
+            const p = engProgress;
+            // B1: 0-33, B2: 34-66, C1: 67-100
+            const b1 = Math.min(100, Math.round((p / 33) * 100));
+            const b2 = Math.min(100, Math.round(((p - 33) / 33) * 100));
+            const c1 = Math.min(100, Math.round(((p - 66) / 34) * 100));
+
+            document.getElementById('b1Fill').style.width = Math.min(100, b1) + '%';
+            document.getElementById('b1Percent').textContent = Math.min(100, b1) + '%';
+            document.getElementById('b2Fill').style.width = Math.max(0, Math.min(100, b2)) + '%';
+            document.getElementById('b2Percent').textContent = Math.max(0, Math.min(100, b2)) + '%';
+            document.getElementById('c1Fill').style.width = Math.max(0, Math.min(100, c1)) + '%';
+            document.getElementById('c1Percent').textContent = Math.max(0, Math.min(100, c1)) + '%';
+
+            let level = 'B1';
+            if (p > 66) level = 'C1';
+            else if (p > 33) level = 'B2';
+            document.getElementById('currentLevelDisplay').textContent = level;
+
+            let progressToB2 = 0;
+            if (p <= 33) progressToB2 = Math.round((p / 33) * 100);
+            else progressToB2 = 100;
+            document.getElementById('levelProgressText').textContent = progressToB2 + '%';
+        }
+
+        function addProgress(amount) {
+            if (engProgress < 100) {
+                engProgress = Math.min(100, engProgress + amount);
+                localStorage.setItem('engProgress', engProgress);
+                updateEngDisplay();
             }
         }
 
+        function resetProgress() {
+            if (confirm('Сбросить прогресс английского?')) {
+                engProgress = 0;
+                localStorage.setItem('engProgress', 0);
+                updateEngDisplay();
+            }
+        }
+
+        updateEngDisplay();
+
+        // ==========================================================
         // ===== СЧЁТЧИКИ =====
         const statKeys = ['calories', 'protein', 'words', 'workouts'];
 
@@ -711,20 +971,30 @@
             }
         }
 
-        // ===== СОХРАНЕНИЕ ДНЯ В ИСТОРИЮ =====
+        // ==========================================================
+        // ===== СОХРАНЕНИЕ ДНЯ =====
+        function getChecklistData() {
+            const checks = document.querySelectorAll('.checklist input[type="checkbox"]');
+            let done = 0;
+            checks.forEach(cb => { if (cb.checked) done++; });
+            return { total: checks.length, done: done };
+        }
+
         function saveDayStats() {
             const day = document.getElementById('dayDisplay').textContent;
+            const checks = getChecklistData();
             const data = {
                 day: day,
                 calories: parseInt(localStorage.getItem('stat_calories')) || 0,
                 protein: parseInt(localStorage.getItem('stat_protein')) || 0,
                 words: parseInt(localStorage.getItem('stat_words')) || 0,
                 workouts: parseInt(localStorage.getItem('stat_workouts')) || 0,
+                checks_done: checks.done,
+                checks_total: checks.total,
                 date: new Date().toLocaleDateString()
             };
 
             let history = JSON.parse(localStorage.getItem('history')) || [];
-            // проверяем, есть ли уже запись за сегодня
             const today = new Date().toLocaleDateString();
             const existing = history.findIndex(h => h.date === today);
             if (existing !== -1) {
@@ -734,28 +1004,31 @@
             }
             localStorage.setItem('history', JSON.stringify(history));
             renderHistory();
+            renderStreak();
 
             const msg = document.getElementById('saveMsg');
-            msg.style.opacity = '1';
-            setTimeout(() => msg.style.opacity = '0', 2500);
+            msg.classList.add('show');
+            setTimeout(() => msg.classList.remove('show'), 2500);
         }
 
+        // ==========================================================
         // ===== ИСТОРИЯ =====
         function renderHistory() {
             const history = JSON.parse(localStorage.getItem('history')) || [];
             const tbody = document.getElementById('historyBody');
             if (history.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#5a7a99;padding:12px;">Нет данных</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#5a7a9a;padding:12px;">Нет данных</td></tr>';
                 return;
             }
             const sorted = history.slice().reverse();
             tbody.innerHTML = sorted.map(h =>
-                `<tr>
+                `<tr class="day-row">
                     <td><strong>${h.day}</strong> <span class="weekday">${h.date || ''}</span></td>
                     <td>${h.calories || 0}</td>
                     <td>${h.protein || 0}</td>
                     <td>${h.words || 0}</td>
                     <td>${h.workouts || 0}</td>
+                    <td>${h.checks_done || 0}/${h.checks_total || 5}</td>
                 </tr>`
             ).join('');
         }
@@ -764,6 +1037,7 @@
             if (confirm('Очистить всю историю?')) {
                 localStorage.removeItem('history');
                 renderHistory();
+                renderStreak();
             }
         }
 
@@ -774,24 +1048,81 @@
                 return;
             }
             let text = '📊 ИТОГИ ТИМБУЛА\n';
-            text += `📅 Дата: ${new Date().toLocaleDateString()}\n`;
-            text += '═'.repeat(30) + '\n';
-            text += 'День | 🔥 | 🥩 | 📚 | 🏋️\n';
-            text += '─'.repeat(30) + '\n';
+            text += `📅 ${new Date().toLocaleDateString()}\n`;
+            text += '═'.repeat(35) + '\n';
+            text += 'День | 🔥 | 🥩 | 📚 | 🏋️ | ✅\n';
+            text += '─'.repeat(35) + '\n';
             const sorted = history.slice().reverse();
             sorted.forEach(h => {
-                text += `${h.day} | ${h.calories || 0} | ${h.protein || 0} | ${h.words || 0} | ${h.workouts || 0}\n`;
+                text +=
+                    `${h.day} | ${h.calories || 0} | ${h.protein || 0} | ${h.words || 0} | ${h.workouts || 0} | ${h.checks_done || 0}/${h.checks_total || 5}\n`;
             });
-            text += '═'.repeat(30) + '\n';
-            text += '🎯 Цель: Кипр → Италия · IT Security';
+            text += '═'.repeat(35) + '\n';
+            text += '🎯 Кипр → Италия · IT Security';
 
             navigator.clipboard.writeText(text).then(() => {
                 const msg = document.getElementById('historyMsg');
-                msg.style.opacity = '1';
-                setTimeout(() => msg.style.opacity = '0', 2500);
+                msg.classList.add('show');
+                setTimeout(() => msg.classList.remove('show'), 2500);
             }).catch(() => alert('Скопируй:\n' + text));
         }
 
+        // ==========================================================
+        // ===== СЕРИЯ ДИСЦИПЛИНЫ =====
+        function renderStreak() {
+            const history = JSON.parse(localStorage.getItem('history')) || [];
+            if (history.length === 0) {
+                document.getElementById('streakCount').textContent = '0';
+                document.getElementById('streakDays').innerHTML = '';
+                return;
+            }
+
+            // сортируем по дате
+            const sorted = history.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+            let streak = 0;
+            let today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // считаем серию с конца
+            for (let i = sorted.length - 1; i >= 0; i--) {
+                const d = new Date(sorted[i].date);
+                d.setHours(0, 0, 0, 0);
+                const diff = (today - d) / (1000 * 60 * 60 * 24);
+                if (diff <= 1 && sorted[i].checks_done > 0) {
+                    streak++;
+                } else if (diff > 1) {
+                    break;
+                }
+            }
+
+            document.getElementById('streakCount').textContent = streak;
+
+            // показываем последние 7 дней
+            const daysContainer = document.getElementById('streakDays');
+            daysContainer.innerHTML = '';
+            const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                const dateStr = d.toLocaleDateString();
+                const found = sorted.find(h => h.date === dateStr);
+                const dot = document.createElement('div');
+                dot.className = 'day-dot';
+                if (found && found.checks_done > 0) {
+                    dot.classList.add('done');
+                    dot.textContent = '✓';
+                } else if (i === 0) {
+                    dot.classList.add('today');
+                    dot.textContent = '•';
+                } else {
+                    dot.textContent = '•';
+                }
+                dot.title = dayNames[d.getDay()] + ' ' + dateStr;
+                daysContainer.appendChild(dot);
+            }
+        }
+
+        // ==========================================================
         // ===== МОТИВАЦИЯ =====
         const motivations = [
             '«Тимбул — это дисциплина. Я делаю.»',
@@ -838,7 +1169,9 @@
         // ==========================================================
         // ===== ЗАГРУЗКА =====
         renderHistory();
+        renderStreak();
         console.log('⚡ Дисциплина Тимбула загружена!');
     </script>
 </body>
 </html>
+```
