@@ -2,9 +2,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Дисциплина Тимбула</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Тимбул OS</title>
     <style>
+        /* ===== RESET ===== */
         * {
             margin: 0;
             padding: 0;
@@ -12,15 +13,14 @@
         }
 
         body {
-            background: #0b1424;
+            background: #0c111d;
             color: #d6e2f0;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
-            width: 100%;
-            padding: 20px;
+            padding: 14px;
             display: flex;
             justify-content: center;
-            background-image: radial-gradient(ellipse at 20% 30%, #14263e 0%, #0b1424 80%);
+            background-image: radial-gradient(ellipse at 20% 30%, #151f32 0%, #0c111d 90%);
         }
 
         .container {
@@ -28,86 +28,63 @@
             width: 100%;
         }
 
-        .card {
-            background: rgba(16, 30, 52, 0.55);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px 24px;
-            border: 1px solid rgba(80, 140, 200, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-        }
-        .card:hover {
-            border-color: rgba(80, 140, 200, 0.15);
-        }
-        .card h2 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #7aaac8;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.8;
-        }
-
+        /* ===== HEADER ===== */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 16px;
         }
         .header h1 {
-            font-size: 32px;
+            font-size: 26px;
             font-weight: 700;
-            color: #b5d6f0;
             background: linear-gradient(135deg, #7ab0d8, #b5d6f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
-        .header .badge-day {
+        .header .badge {
             background: rgba(26, 44, 68, 0.5);
-            padding: 6px 20px;
+            padding: 4px 16px;
             border-radius: 30px;
-            font-size: 16px;
+            font-size: 13px;
             color: #7aaac8;
-            border: 1px solid rgba(70, 120, 180, 0.1);
-            font-weight: 500;
+            border: 1px solid rgba(70, 120, 180, 0.08);
         }
 
+        /* ===== TAB BAR ===== */
         .tab-bar {
             display: flex;
-            gap: 6px;
-            background: rgba(16, 30, 52, 0.3);
-            border-radius: 16px;
-            padding: 6px;
-            border: 1px solid rgba(70, 120, 180, 0.06);
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            gap: 4px;
+            background: rgba(16, 30, 52, 0.25);
+            border-radius: 14px;
+            padding: 4px;
+            border: 1px solid rgba(70, 120, 180, 0.05);
+            margin-bottom: 16px;
+            overflow-x: auto;
+            flex-wrap: nowrap;
         }
         .tab-btn {
             background: transparent;
             border: none;
             color: #4a6a8a;
-            padding: 10px 24px;
-            border-radius: 12px;
-            font-size: 15px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
             flex: 1;
-            min-width: 80px;
+            min-width: 50px;
             text-align: center;
         }
         .tab-btn.active {
             background: rgba(40, 80, 130, 0.25);
             color: #b5d6f0;
-            box-shadow: 0 2px 20px rgba(60, 130, 200, 0.08);
+            box-shadow: 0 2px 20px rgba(60, 130, 200, 0.06);
         }
         .tab-btn:hover {
             color: #b5d6f0;
@@ -115,7 +92,7 @@
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.35s ease;
         }
         .tab-content.active {
             display: block;
@@ -124,7 +101,7 @@
         @keyframes fadeIn {
             0% {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(8px);
             }
             100% {
                 opacity: 1;
@@ -132,654 +109,1217 @@
             }
         }
 
-        .checklist label {
+        /* ===== CARDS ===== */
+        .card {
+            background: rgba(16, 30, 52, 0.45);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 16px 18px;
+            border: 1px solid rgba(80, 140, 200, 0.06);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(80, 140, 200, 0.1);
+        }
+        .card h2 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #5a7a9a;
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 8px 0;
+            gap: 8px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .card h2 .icon {
             font-size: 16px;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(40, 80, 130, 0.06);
-            transition: all 0.3s ease;
-            border-radius: 8px;
-        }
-        .checklist label:hover {
-            background: rgba(40, 80, 130, 0.04);
-            padding-left: 8px;
-        }
-        .checklist label:last-child {
-            border-bottom: none;
-        }
-        .checklist input[type="checkbox"] {
-            width: 22px;
-            height: 22px;
-            accent-color: #5a9ac8;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .checklist input[type="checkbox"]:checked+span {
-            text-decoration: line-through;
-            color: #3a5a7a;
-            opacity: 0.5;
-        }
-        .checklist .reset-btn {
-            background: transparent;
-            border: 1px solid rgba(70, 120, 180, 0.1);
-            color: #4a6a8a;
-            padding: 4px 16px;
-            border-radius: 30px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-left: auto;
-        }
-        .checklist .reset-btn:hover {
-            background: rgba(40, 80, 130, 0.1);
-            color: #b5d6f0;
         }
 
-        .stat-grid {
+        /* ===== GRIDS ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .grid-4 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
         }
-        .stat-item {
-            background: rgba(12, 26, 46, 0.3);
-            border-radius: 14px;
-            padding: 14px 10px;
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        /* ===== STAT CARDS ===== */
+        .stat-card {
+            background: rgba(12, 26, 46, 0.25);
+            border-radius: 12px;
+            padding: 12px 10px;
             text-align: center;
             border: 1px solid rgba(70, 120, 180, 0.04);
             transition: all 0.3s ease;
         }
-        .stat-item:hover {
-            border-color: rgba(70, 120, 180, 0.1);
+        .stat-card:hover {
+            border-color: rgba(70, 120, 180, 0.08);
         }
-        .stat-item .num {
-            font-size: 30px;
+        .stat-card .num {
+            font-size: 26px;
             font-weight: 700;
             color: #b5d6f0;
         }
-        .stat-item .label {
-            font-size: 11px;
+        .stat-card .label {
+            font-size: 10px;
             color: #3a5a7a;
-            margin-top: 4px;
+            margin-top: 2px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
-        .stat-item .controls {
-            display: flex;
-            gap: 6px;
-            justify-content: center;
-            margin-top: 6px;
-            align-items: center;
-        }
-        .stat-item input[type="number"] {
-            width: 56px;
-            background: rgba(8, 18, 34, 0.4);
-            border: 1px solid rgba(70, 120, 180, 0.08);
-            color: #d6e2f0;
-            border-radius: 8px;
-            padding: 4px 6px;
-            font-size: 16px;
-            text-align: center;
-        }
-        .stat-item input[type="number"]:focus {
-            outline: none;
-            border-color: rgba(70, 140, 200, 0.2);
+        .stat-card .sub {
+            font-size: 11px;
+            color: #5a7a9a;
+            margin-top: 2px;
         }
 
-        .btn-sm {
-            background: rgba(40, 80, 130, 0.12);
-            border: none;
-            color: #6a9aba;
-            padding: 4px 14px;
-            border-radius: 30px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-weight: 600;
-        }
-        .btn-sm:hover {
-            background: rgba(40, 80, 130, 0.25);
-            color: #b5d6f0;
-        }
-        .btn-sm.success {
-            color: #5a9a7a;
-        }
-        .btn-sm.success:hover {
-            background: rgba(40, 100, 70, 0.15);
-        }
-        .btn-sm.danger {
-            color: #b57a7a;
-        }
-        .btn-sm.danger:hover {
-            background: rgba(100, 40, 40, 0.1);
-        }
-
-        .btn {
-            background: rgba(40, 80, 130, 0.1);
-            border: 1px solid rgba(70, 120, 180, 0.08);
-            color: #d6e2f0;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background: rgba(40, 80, 130, 0.2);
-            border-color: rgba(70, 140, 200, 0.15);
-        }
-        .btn-export {
-            background: rgba(40, 100, 70, 0.1);
-            border-color: rgba(70, 160, 120, 0.08);
-            color: #5a9a7a;
-        }
-        .btn-export:hover {
-            background: rgba(40, 100, 70, 0.2);
-        }
-
-        .flex-center {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 12px;
-        }
-
-        .eng-progress {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            padding: 4px 0;
-        }
-        .eng-progress .level-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 15px;
-        }
-        .eng-progress .level-row .level-label {
-            width: 32px;
-            font-weight: 600;
-            color: #3a5a7a;
-        }
-        .eng-progress .level-row .level-bar {
-            flex: 1;
+        /* ===== PROGRESS BAR ===== */
+        .progress-bar {
+            width: 100%;
             height: 8px;
             background: rgba(16, 30, 50, 0.3);
             border-radius: 30px;
             overflow: hidden;
+            margin: 4px 0;
         }
-        .eng-progress .level-row .level-bar .fill {
+        .progress-bar .fill {
             height: 100%;
             border-radius: 30px;
-            transition: width 1s ease;
+            transition: width 0.8s ease;
             width: 0%;
         }
-        .eng-progress .level-row .level-bar .fill.b1 {
+        .progress-bar .fill.green {
+            background: linear-gradient(90deg, #3a8a6a, #5aed8a);
+        }
+        .progress-bar .fill.blue {
             background: linear-gradient(90deg, #3a6a8a, #7ab0d8);
         }
-        .eng-progress .level-row .level-bar .fill.b2 {
-            background: linear-gradient(90deg, #4a7a9a, #8ac0e8);
+        .progress-bar .fill.orange {
+            background: linear-gradient(90deg, #8a7a3a, #edba5a);
         }
-        .eng-progress .level-row .level-bar .fill.c1 {
-            background: linear-gradient(90deg, #5a8aaa, #9ad0f0);
+        .progress-bar .fill.purple {
+            background: linear-gradient(90deg, #6a3a8a, #b57aed);
         }
-        .eng-progress .level-row .level-percent {
-            width: 40px;
-            text-align: right;
-            font-size: 13px;
-            color: #3a5a7a;
-            font-weight: 500;
+        .progress-bar .fill.red {
+            background: linear-gradient(90deg, #8a3a3a, #ed5a5a);
         }
-        .eng-progress .current-level {
-            text-align: center;
-            font-size: 15px;
-            color: #7aaac8;
-            padding: 6px 0;
-            background: rgba(40, 80, 130, 0.04);
-            border-radius: 8px;
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #5a7a9a;
         }
-        .eng-progress .current-level strong {
+        .progress-label strong {
             color: #b5d6f0;
         }
-        .eng-progress .btn-group {
+
+        /* ===== CHARACTER ===== */
+        .char-stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 8px 0;
+        }
+        .char-stat {
+            text-align: center;
+            padding: 6px 4px;
+            background: rgba(12, 26, 46, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(70, 120, 180, 0.04);
+        }
+        .char-stat .icon {
+            font-size: 20px;
+        }
+        .char-stat .name {
+            font-size: 10px;
+            color: #5a7a9a;
+        }
+        .char-stat .val {
+            font-size: 14px;
+            font-weight: 600;
+            color: #b5d6f0;
+        }
+
+        /* ===== QUICK ACTIONS ===== */
+        .quick-actions {
             display: flex;
             gap: 8px;
-            justify-content: center;
-            margin-top: 8px;
-        }
-
-        .history-table {
-            width: 100%;
-            font-size: 14px;
-            border-collapse: collapse;
-        }
-        .history-table th {
-            text-align: left;
-            color: #3a5a7a;
-            font-weight: 500;
-            padding: 8px 6px;
-            border-bottom: 1px solid rgba(70, 120, 180, 0.06);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .history-table td {
-            padding: 8px 6px;
-            border-bottom: 1px solid rgba(70, 120, 180, 0.03);
-        }
-        .history-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .streak-box {
-            background: rgba(12, 26, 46, 0.3);
-            border-radius: 14px;
-            padding: 16px 20px;
-            text-align: center;
-            border: 1px solid rgba(70, 120, 180, 0.04);
-        }
-        .streak-box .streak-number {
-            font-size: 40px;
-            font-weight: 700;
-            color: #b5d6f0;
-        }
-        .streak-box .streak-label {
-            font-size: 13px;
-            color: #3a5a7a;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .streak-box .streak-days {
-            display: flex;
-            gap: 6px;
-            justify-content: center;
-            margin-top: 10px;
             flex-wrap: wrap;
+            margin-top: 6px;
         }
-        .streak-box .streak-days .day-dot {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: rgba(40, 80, 130, 0.06);
+        .quick-btn {
+            background: rgba(40, 80, 130, 0.12);
+            border: 1px solid rgba(70, 120, 180, 0.06);
+            color: #d6e2f0;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .quick-btn:hover {
+            background: rgba(40, 80, 130, 0.25);
+            border-color: rgba(70, 140, 200, 0.1);
+        }
+        .quick-btn.success {
+            background: rgba(40, 120, 70, 0.15);
+            border-color: rgba(60, 200, 120, 0.08);
+            color: #5aed8a;
+        }
+        .quick-btn.success:hover {
+            background: rgba(40, 120, 70, 0.25);
+        }
+        .quick-btn.danger {
+            background: rgba(120, 40, 40, 0.15);
+            border-color: rgba(200, 60, 60, 0.08);
+            color: #ed5a5a;
+        }
+
+        /* ===== BODY ===== */
+        .muscle-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+        .muscle-item {
+            background: rgba(12, 26, 46, 0.2);
+            border-radius: 10px;
+            padding: 8px 6px;
+            text-align: center;
+            border: 1px solid rgba(70, 120, 180, 0.04);
+        }
+        .muscle-item .name {
+            font-size: 11px;
+            color: #5a7a9a;
+        }
+        .muscle-item .val {
+            font-size: 13px;
+            font-weight: 600;
+            color: #b5d6f0;
+        }
+
+        /* ===== PROJECTS ===== */
+        .project-item {
+            background: rgba(12, 26, 46, 0.2);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 6px;
             border: 1px solid rgba(70, 120, 180, 0.04);
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #3a5a7a;
-            transition: all 0.4s ease;
+            flex-wrap: wrap;
+            gap: 6px;
         }
-        .streak-box .streak-days .day-dot.done {
-            background: rgba(60, 160, 120, 0.15);
-            border-color: rgba(60, 160, 120, 0.1);
-            color: #5a9a7a;
-        }
-        .streak-box .streak-days .day-dot.today {
-            border-color: #5a8db5;
-            box-shadow: 0 0 20px rgba(60, 130, 200, 0.06);
-        }
-
-        .motivation-text {
-            font-size: 20px;
+        .project-item .name {
             font-weight: 500;
             color: #b5d6f0;
-            text-align: center;
-            padding: 16px;
-            background: rgba(26, 44, 68, 0.15);
-            border-radius: 14px;
-            border-left: 4px solid #4a7a9a;
-            min-height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 14px;
+        }
+        .project-item .status {
+            font-size: 12px;
+            color: #5a7a9a;
+        }
+        .project-item .status.done {
+            color: #5aed8a;
+        }
+        .project-item .status.inprogress {
+            color: #edba5a;
         }
 
-        .footer {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #2a4a5a;
-            text-align: center;
-            border-top: 1px solid rgba(70, 120, 180, 0.04);
-            padding-top: 16px;
+        /* ===== UNI ===== */
+        .uni-item {
+            background: rgba(12, 26, 46, 0.2);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 6px;
+            border: 1px solid rgba(70, 120, 180, 0.04);
         }
-        .footer strong {
+        .uni-item .name {
+            font-weight: 500;
+            color: #b5d6f0;
+            font-size: 14px;
+        }
+        .uni-item .detail {
+            font-size: 12px;
             color: #5a7a9a;
         }
 
-        .copy-msg {
-            color: #5a9a7a;
-            font-size: 14px;
+        /* ===== ACHIEVEMENTS ===== */
+        .ach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+        }
+        .ach-item {
+            background: rgba(12, 26, 46, 0.2);
+            border-radius: 10px;
+            padding: 10px 8px;
             text-align: center;
-            margin-top: 6px;
-            opacity: 0;
-            transition: 0.4s;
-        }
-        .copy-msg.show {
-            opacity: 1;
-        }
-
-        .workout-plan {
-            font-size: 14px;
-            color: #7aaac8;
-            background: rgba(16, 30, 50, 0.15);
-            border-radius: 12px;
-            padding: 12px 14px;
             border: 1px solid rgba(70, 120, 180, 0.04);
+            transition: all 0.3s ease;
+            font-size: 12px;
+            color: #5a7a9a;
         }
-        .workout-plan strong {
+        .ach-item.unlocked {
+            border-color: rgba(60, 200, 120, 0.12);
             color: #b5d6f0;
         }
+        .ach-item .icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .ach-item.locked {
+            filter: grayscale(1);
+            opacity: 0.35;
+        }
 
-        .chart-container {
-            background: rgba(12, 26, 46, 0.2);
-            border-radius: 12px;
-            padding: 14px;
-            border: 1px solid rgba(70, 120, 180, 0.04);
+        /* ===== SETTINGS ===== */
+        .setting-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(40, 80, 130, 0.04);
+            flex-wrap: wrap;
+        }
+        .setting-row label {
+            min-width: 100px;
+            font-size: 13px;
+            color: #7aaac8;
+        }
+        .setting-row input,
+        .setting-row select {
+            background: rgba(8, 18, 34, 0.4);
+            border: 1px solid rgba(70, 120, 180, 0.06);
+            color: #d6e2f0;
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 13px;
+            width: 100px;
+        }
+        .setting-row input:focus,
+        .setting-row select:focus {
+            outline: none;
+            border-color: rgba(70, 140, 200, 0.15);
+        }
+
+        .btn {
+            background: rgba(40, 80, 130, 0.1);
+            border: 1px solid rgba(70, 120, 180, 0.06);
+            color: #d6e2f0;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: rgba(40, 80, 130, 0.2);
+            border-color: rgba(70, 140, 200, 0.1);
+        }
+        .btn-success {
+            background: rgba(40, 120, 70, 0.12);
+            border-color: rgba(60, 200, 120, 0.06);
+            color: #5aed8a;
+        }
+        .btn-success:hover {
+            background: rgba(40, 120, 70, 0.2);
+        }
+
+        .flex-center {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
             margin-top: 8px;
         }
-        .chart-container svg {
-            width: 100%;
-            height: 100px;
-            display: block;
-        }
-        .chart-container .chart-label {
-            font-size: 12px;
-            color: #3a5a7a;
-            text-align: center;
-            margin-top: 6px;
-        }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .perfect-badge {
-            display: inline-block;
-            background: rgba(60, 200, 120, 0.15);
-            color: #5aed8a;
-            padding: 2px 12px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid rgba(60, 200, 120, 0.2);
-            margin-left: 6px;
-        }
-
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body {
-                padding: 12px;
+                padding: 10px;
             }
             .header h1 {
-                font-size: 24px;
-            }
-            .stat-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .tab-btn {
-                padding: 8px 14px;
-                font-size: 13px;
-                min-width: 60px;
-            }
-            .motivation-text {
-                font-size: 17px;
-                min-height: 60px;
-            }
-            .streak-box .streak-number {
-                font-size: 32px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 8px;
-            }
-            .card {
-                padding: 14px 16px;
-            }
-            .header h1 {
-                font-size: 20px;
-            }
-            .stat-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 6px;
-            }
-            .stat-item .num {
                 font-size: 22px;
+            }
+            .grid-2,
+            .grid-3,
+            .grid-4,
+            .grid-5 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .char-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .muscle-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             .tab-btn {
                 font-size: 11px;
                 padding: 6px 10px;
-                min-width: 44px;
+                min-width: 40px;
             }
-            .motivation-text {
-                font-size: 15px;
-                min-height: 50px;
-                padding: 12px;
+            .stat-card .num {
+                font-size: 20px;
             }
-            .streak-box .streak-number {
-                font-size: 28px;
+            .quick-actions {
+                gap: 4px;
             }
-            .streak-box .streak-days .day-dot {
-                width: 22px;
-                height: 22px;
+            .quick-btn {
+                padding: 4px 12px;
+                font-size: 12px;
+            }
+            .ach-grid {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-2,
+            .grid-3,
+            .grid-4,
+            .grid-5 {
+                grid-template-columns: 1fr;
+            }
+            .char-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .muscle-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+            .card {
+                padding: 12px 14px;
+            }
+            .stat-card .num {
+                font-size: 18px;
+            }
+            .setting-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+            }
+            .setting-row input {
+                width: 100%;
+            }
+            .tab-btn {
                 font-size: 10px;
+                padding: 4px 8px;
+                min-width: 34px;
             }
-            .checklist label {
-                font-size: 14px;
-            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px;
+            height: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(16, 30, 52, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(60, 130, 200, 0.15);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(60, 130, 200, 0.25);
         }
     </style>
 </head>
 <body>
     <div class="container">
 
+        <!-- ===== HEADER ===== -->
         <div class="header">
-            <h1>✦ Дисциплина Тимбула</h1>
-            <span class="badge-day" id="dayDisplay">День 1</span>
+            <h1>🖥️ Тимбул OS</h1>
+            <span class="badge" id="dayDisplay">День 1</span>
         </div>
 
+        <!-- ===== TAB BAR ===== -->
         <div class="tab-bar">
-            <button class="tab-btn active" data-tab="tab-main">📋 Дела</button>
-            <button class="tab-btn" data-tab="tab-stats">📊 Счёт</button>
-            <button class="tab-btn" data-tab="tab-history">📈 Итоги</button>
-            <button class="tab-btn" data-tab="tab-fire">🔥 Кайф</button>
+            <button class="tab-btn active" data-tab="tab-main">🏠 Главная</button>
+            <button class="tab-btn" data-tab="tab-body">💪 Тело</button>
+            <button class="tab-btn" data-tab="tab-english">🇬🇧 Английский</button>
+            <button class="tab-btn" data-tab="tab-uni">🎓 Поступление</button>
+            <button class="tab-btn" data-tab="tab-projects">🚀 Проекты</button>
+            <button class="tab-btn" data-tab="tab-stats">📊 Статистика</button>
+            <button class="tab-btn" data-tab="tab-achievements">🏆 Достижения</button>
+            <button class="tab-btn" data-tab="tab-settings">⚙️ Настройки</button>
         </div>
 
+        <!-- ========================================================== -->
+        <!-- ===== TAB: ГЛАВНАЯ ===== -->
         <div id="tab-main" class="tab-content active">
-            <div class="card checklist">
-                <h2>✅ Чек-лист
-                    <button class="reset-btn" onclick="resetChecklist()">🔄 сброс</button>
-                </h2>
-                <label><input type="checkbox" class="check-item" /> <span>Тренировка (по плану)</span></label>
-                <label><input type="checkbox" class="check-item" /> <span>Полезное питание (белок/калории)</span></label>
-                <label><input type="checkbox" class="check-item" /> <span>Новые слова (минимум 5)</span></label>
-                <label><input type="checkbox" class="check-item" /> <span>Калории и белок записаны</span></label>
-                <label><input type="checkbox" class="check-item" /> <span>Разговорный ролик на английском</span></label>
-            </div>
 
-            <div class="card">
-                <h2>🏋️ План тренировок</h2>
-                <div class="workout-plan">
-                    <div><strong>День 1 (грудные + трицепс):</strong> отжимания широкие 3×12, узкие 3×10, V-скручивания 3×15, планка 3×45 сек</div>
-                    <div style="margin-top:6px;"><strong>День 2 (спина + бицепс):</strong> тяга гантели 3×12, обратные отжимания 3×12, подъем гантелей 3×10, гиперэкстензия 3×15</div>
-                    <div style="margin-top:6px;"><strong>День 3 (пресс + плечи):</strong> скручивания 3×20, V-скручивания 3×15, подъем ног 3×12, отжимания с подъемом таза 3×10, планка 3×40 сек</div>
-                    <div style="margin-top:6px;color:#3a5a7a;font-size:12px;">🔄 Повторять цикл · Вс — отдых · Кардио — прогулка</div>
+            <!-- УРОВЕНЬ + XP -->
+            <div class="card" style="background:rgba(16,30,52,0.6);border-color:rgba(80,140,200,0.08);">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+                    <div>
+                        <div style="font-size:13px;color:#5a7a9a;">Уровень</div>
+                        <div style="font-size:36px;font-weight:700;color:#b5d6f0;" id="levelDisplay">1</div>
+                    </div>
+                    <div style="text-align:right;flex:1;">
+                        <div style="font-size:13px;color:#5a7a9a;">XP</div>
+                        <div style="font-size:18px;font-weight:600;color:#edba5a;" id="xpDisplay">0 / 100</div>
+                        <div class="progress-bar" style="height:6px;width:100%;"><div class="fill orange" id="xpBar" style="width:0%;"></div></div>
+                    </div>
+                    <div style="text-align:center;min-width:80px;">
+                        <div style="font-size:13px;color:#5a7a9a;">Прогресс дня</div>
+                        <div style="font-size:28px;font-weight:700;color:#5aed8a;" id="dayProgressText">0%</div>
+                        <div class="progress-bar" style="height:4px;width:80px;margin:2px auto;"><div class="fill green" id="dayProgressBar" style="width:0%;"></div></div>
+                    </div>
                 </div>
             </div>
 
+            <!-- ХАРАКТЕРИСТИКИ -->
+            <div class="char-stats" id="charStats">
+                <div class="char-stat"><div class="icon">💪</div><div class="name">Тело</div><div class="val" id="statBody">0%</div></div>
+                <div class="char-stat"><div class="icon">🧠</div><div class="name">Учёба</div><div class="val" id="statStudy">0%</div></div>
+                <div class="char-stat"><div class="icon">🇬🇧</div><div class="name">Английский</div><div class="val" id="statEnglish">0%</div></div>
+                <div class="char-stat"><div class="icon">💻</div><div class="name">Проекты</div><div class="val" id="statProjects">0%</div></div>
+                <div class="char-stat"><div class="icon">🔥</div><div class="name">Дисциплина</div><div class="val" id="statDiscipline">0%</div></div>
+            </div>
+
+            <!-- БЫСТРЫЕ ДЕЙСТВИЯ -->
             <div class="card">
-                <h2>🇬🇧 Английский B1 → B2</h2>
-                <div class="eng-progress">
-                    <div class="current-level">
-                        Текущий уровень: <strong id="currentLevelDisplay">B1</strong> · До B2: <strong id="levelProgressText">0%</strong>
+                <h2>⚡ Быстрые действия</h2>
+                <div class="quick-actions">
+                    <button class="quick-btn success" onclick="quickAction('workout')">🏋️ Тренировка</button>
+                    <button class="quick-btn" onclick="quickAction('words')">📚 +5 слов</button>
+                    <button class="quick-btn" onclick="quickAction('study')">🧠 Учёба</button>
+                    <button class="quick-btn success" onclick="quickAction('protein')">🥩 +10г белка</button>
+                    <button class="quick-btn" onclick="quickAction('calories')">🔥 +200 калорий</button>
+                    <button class="quick-btn danger" onclick="quickAction('reset')">🔄 Сброс дня</button>
+                </div>
+            </div>
+
+            <!-- БЫСТРАЯ СТАТИСТИКА -->
+            <div class="grid-4">
+                <div class="stat-card"><div class="num" id="qsWorkouts">0</div><div class="label">Тренировки</div></div>
+                <div class="stat-card"><div class="num" id="qsWords">0</div><div class="label">Слов</div></div>
+                <div class="stat-card"><div class="num" id="qsStreak">0</div><div class="label">Дней подряд</div></div>
+                <div class="stat-card"><div class="num" id="qsProtein">0</div><div class="label">Средний белок</div></div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- ===== TAB: ТЕЛО ===== -->
+        <div id="tab-body" class="tab-content">
+            <div class="card">
+                <h2><span class="icon">💪</span> Тело</h2>
+                <div class="grid-2">
+                    <div class="stat-card"><div class="num" id="bodyWeight">0</div><div class="label">Вес (кг)</div></div>
+                    <div class="stat-card"><div class="num" id="bodyProtein">0</div><div class="label">Белок (г) сегодня</div></div>
+                    <div class="stat-card"><div class="num" id="bodyWorkouts">0</div><div class="label">Тренировок всего</div></div>
+                    <div class="stat-card"><div class="num" id="bodyCalories">0</div><div class="label">Калории сегодня</div></div>
+                </div>
+                <div style="margin-top:8px;">
+                    <div class="progress-label"><span>Прогресс мышц</span><strong id="muscleTotal">0%</strong></div>
+                    <div class="muscle-grid">
+                        <div class="muscle-item"><div class="name">Грудные</div><div class="val" id="muscleChest">0%</div></div>
+                        <div class="muscle-item"><div class="name">Руки</div><div class="val" id="muscleArms">0%</div></div>
+                        <div class="muscle-item"><div class="name">Спина</div><div class="val" id="muscleBack">0%</div></div>
+                        <div class="muscle-item"><div class="name">Пресс</div><div class="val" id="muscleAbs">0%</div></div>
                     </div>
-                    <div class="level-row">
-                        <span class="level-label">B1</span>
-                        <div class="level-bar"><div class="fill b1" id="b1Fill" style="width:100%;"></div></div>
-                        <span class="level-percent" id="b1Percent">100%</span>
-                    </div>
-                    <div class="level-row">
-                        <span class="level-label">B2</span>
-                        <div class="level-bar"><div class="fill b2" id="b2Fill" style="width:0%;"></div></div>
-                        <span class="level-percent" id="b2Percent">0%</span>
-                    </div>
-                    <div class="level-row">
-                        <span class="level-label">C1</span>
-                        <div class="level-bar"><div class="fill c1" id="c1Fill" style="width:0%;"></div></div>
-                        <span class="level-percent" id="c1Percent">0%</span>
-                    </div>
-                    <div class="btn-group">
-                        <button class="btn" onclick="addProgress(5)">➕ 5%</button>
-                        <button class="btn" onclick="addProgress(10)">➕ 10%</button>
-                        <button class="btn-sm" onclick="resetProgress()" style="color:#b57a7a;">Сброс</button>
-                    </div>
+                </div>
+                <div class="flex-center" style="margin-top:8px;">
+                    <button class="btn btn-success" onclick="addWorkout()">🏋️ + Тренировка</button>
+                    <button class="btn" onclick="addProtein(10)">🥩 +10г белка</button>
+                    <button class="btn" onclick="addCalories(100)">🔥 +100 калорий</button>
                 </div>
             </div>
         </div>
 
+        <!-- ========================================================== -->
+        <!-- ===== TAB: АНГЛИЙСКИЙ ===== -->
+        <div id="tab-english" class="tab-content">
+            <div class="card">
+                <h2><span class="icon">🇬🇧</span> Английский</h2>
+                <div style="text-align:center;padding:6px 0;">
+                    <div style="font-size:40px;font-weight:700;color:#b5d6f0;" id="engLevel">B1</div>
+                    <div style="font-size:13px;color:#5a7a9a;">Текущий уровень</div>
+                </div>
+                <div class="progress-label"><span>Прогресс до B2</span><strong id="engProgressText">0%</strong></div>
+                <div class="progress-bar"><div class="fill blue" id="engProgressBar" style="width:0%;"></div></div>
+                <div class="grid-3" style="margin-top:10px;">
+                    <div class="stat-card"><div class="num" id="engWords">0</div><div class="label">Всего слов</div></div>
+                    <div class="stat-card"><div class="num" id="engStreak">0</div><div class="label">Дней подряд</div></div>
+                    <div class="stat-card"><div class="num" id="engToGoal">0</div><div class="label">Осталось до цели</div></div>
+                </div>
+                <div class="flex-center">
+                    <button class="btn btn-success" onclick="addEnglish(5)">➕ 5%</button>
+                    <button class="btn btn-success" onclick="addEnglish(10)">➕ 10%</button>
+                    <button class="btn" onclick="addWords(5)">📚 +5 слов</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- ===== TAB: ПОСТУПЛЕНИЕ ===== -->
+        <div id="tab-uni" class="tab-content">
+            <div class="card">
+                <h2><span class="icon">🎓</span> Поступление</h2>
+                <div class="uni-item">
+                    <div class="name">🇨🇾 EMU (Кипр) — IT Security</div>
+                    <div class="detail">Бакалавриат · Старт: 2026</div>
+                </div>
+                <div class="uni-item">
+                    <div class="name">🇮🇹 Турин / Падуя (Италия)</div>
+                    <div class="detail">Магистратура · Цель: 2030</div>
+                </div>
+                <div style="margin-top:8px;">
+                    <div class="progress-label"><span>Документы</span><strong id="uniDocs">0%</strong></div>
+                    <div class="progress-bar"><div class="fill purple" id="uniDocsBar" style="width:0%;"></div></div>
+                    <div class="progress-label" style="margin-top:4px;"><span>IELTS</span><strong id="uniIelts">0%</strong></div>
+                    <div class="progress-bar"><div class="fill orange" id="uniIeltsBar" style="width:0%;"></div></div>
+                    <div class="progress-label" style="margin-top:4px;"><span>Общий прогресс</span><strong id="uniTotal">0%</strong></div>
+                    <div class="progress-bar"><div class="fill green" id="uniTotalBar" style="width:0%;"></div></div>
+                </div>
+                <div class="flex-center">
+                    <button class="btn btn-success" onclick="addUniProgress(10)">📄 +10% документы</button>
+                    <button class="btn btn-success" onclick="addIelts(5)">🎧 +5% IELTS</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- ===== TAB: ПРОЕКТЫ ===== -->
+        <div id="tab-projects" class="tab-content">
+            <div class="card">
+                <h2><span class="icon">🚀</span> Проекты</h2>
+                <div id="projectsContainer"></div>
+                <div class="flex-center" style="margin-top:8px;">
+                    <button class="btn btn-success" onclick="addProject()">➕ Новый проект</button>
+                    <button class="btn" onclick="advanceProjects()">📈 Прогресс +10%</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- ===== TAB: СТАТИСТИКА ===== -->
         <div id="tab-stats" class="tab-content">
             <div class="card">
-                <h2>📊 Счётчики (сегодня)</h2>
-                <div class="stat-grid">
-                    <div class="stat-item">
-                        <div class="num" id="statCalories">0</div>
-                        <div class="label">🔥 Калории</div>
-                        <div class="controls">
-                            <input type="number" id="inputCalories" value="0" min="0" step="50" />
-                            <button class="btn-sm success" onclick="updateStat('calories')">➕</button>
-                        </div>
+                <h2><span class="icon">📊</span> Статистика</h2>
+                <div style="font-size:13px;color:#5a7a9a;text-align:center;padding:10px;">Графики прогресса по дням</div>
+                <div class="grid-2" id="statsContainer">
+                    <div class="stat-card" style="min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+                        <div style="font-size:13px;color:#5a7a9a;">Тренировки</div>
+                        <div id="statsWorkouts" style="font-size:20px;font-weight:600;color:#5aed8a;">0</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="num" id="statProtein">0</div>
-                        <div class="label">🥩 Белок (г)</div>
-                        <div class="controls">
-                            <input type="number" id="inputProtein" value="0" min="0" step="5" />
-                            <button class="btn-sm success" onclick="updateStat('protein')">➕</button>
-                        </div>
+                    <div class="stat-card" style="min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+                        <div style="font-size:13px;color:#5a7a9a;">Слова</div>
+                        <div id="statsWords" style="font-size:20px;font-weight:600;color:#edba5a;">0</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="num" id="statWords">0</div>
-                        <div class="label">📚 Новых слов</div>
-                        <div class="controls">
-                            <input type="number" id="inputWords" value="0" min="0" step="1" />
-                            <button class="btn-sm success" onclick="updateStat('words')">➕</button>
-                        </div>
+                    <div class="stat-card" style="min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+                        <div style="font-size:13px;color:#5a7a9a;">Идеальные дни</div>
+                        <div id="statsPerfect" style="font-size:20px;font-weight:600;color:#5aed8a;">0</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="num" id="statWorkouts">0</div>
-                        <div class="label">🏋️ Тренировка</div>
-                        <div class="controls">
-                            <button class="btn-sm success" onclick="toggleWorkout()" id="workoutToggleBtn">⭕ Нет</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex-center" style="margin-top:14px;">
-                    <button class="btn btn-export" onclick="saveDayStats()">💾 Записать день</button>
-                    <button class="btn-sm danger" onclick="resetStats()">🔄 Сбросить счётчики</button>
-                </div>
-                <div id="saveMsg" class="copy-msg">✅ Данные сохранены!</div>
-            </div>
-        </div>
-
-        <div id="tab-history" class="tab-content">
-            <div class="card">
-                <h2>📈 Итоги по дням</h2>
-                <div style="overflow-x:auto;">
-                    <table class="history-table" id="historyTable">
-                        <thead><tr><th>День</th><th>🔥</th><th>🥩</th><th>📚</th><th>🏋️</th><th>✅</th><th>🏆</th><th>🇬🇧</th></tr></thead>
-                        <tbody id="historyBody"></tbody>
-                    </table>
-                </div>
-                <div class="flex-center" style="margin-top:10px;">
-                    <button class="btn-sm danger" onclick="clearHistory()">🗑️ Очистить</button>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="card">
-                    <h2>📊 График прогресса</h2>
-                    <div class="chart-container">
-                        <svg id="progressChart" viewBox="0 0 600 80" preserveAspectRatio="xMidYMid meet"></svg>
-                        <div class="chart-label">последние 10 дней</div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>🔥 Серия дисциплины (МСК)</h2>
-                    <div class="streak-box">
-                        <div class="streak-number" id="streakCount">0</div>
-                        <div class="streak-label">дней подряд</div>
-                        <div class="streak-days" id="streakDays"></div>
-                        <div style="margin-top:8px;font-size:13px;color:#3a5a7a;">
-                            🏆 Рекорд: <strong id="streakRecord" style="color:#b5d6f0;">0</strong> дней
-                        </div>
+                    <div class="stat-card" style="min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+                        <div style="font-size:13px;color:#5a7a9a;">Всего XP</div>
+                        <div id="statsXP" style="font-size:20px;font-weight:600;color:#edba5a;">0</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="tab-fire" class="tab-content">
+        <!-- ========================================================== -->
+        <!-- ===== TAB: ДОСТИЖЕНИЯ ===== -->
+        <div id="tab-achievements" class="tab-content">
             <div class="card">
-                <h2>🔥 Мотивация</h2>
-                <div class="motivation-text" id="motivationDisplay">«Тимбул — это дисциплина. Я делаю.»</div>
+                <h2><span class="icon">🏆</span> Достижения</h2>
+                <div class="ach-grid" id="achGrid"></div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- ===== TAB: НАСТРОЙКИ ===== -->
+        <div id="tab-settings" class="tab-content">
+            <div class="card">
+                <h2><span class="icon">⚙️</span> Настройки</h2>
+                <div class="setting-row">
+                    <label>Норма белка (г)</label>
+                    <input type="number" id="settingProtein" value="140" min="50" max="300" />
+                </div>
+                <div class="setting-row">
+                    <label>Норма калорий (мин)</label>
+                    <input type="number" id="settingCalMin" value="1800" min="1000" max="4000" />
+                </div>
+                <div class="setting-row">
+                    <label>Норма калорий (макс)</label>
+                    <input type="number" id="settingCalMax" value="2100" min="1000" max="4000" />
+                </div>
+                <div class="setting-row">
+                    <label>Цель слов</label>
+                    <input type="number" id="settingWordsGoal" value="1000" min="100" max="10000" />
+                </div>
+                <div class="setting-row">
+                    <label>Вес (кг)</label>
+                    <input type="number" id="settingWeight" value="75" min="40" max="200" />
+                </div>
+                <div class="setting-row">
+                    <label>Тема</label>
+                    <select id="settingTheme">
+                        <option value="dark">🌙 Тёмная</option>
+                        <option value="light">☀️ Светлая</option>
+                        <option value="ocean">🌊 Океан</option>
+                        <option value="forest">🌲 Лес</option>
+                    </select>
+                </div>
                 <div class="flex-center">
-                    <button class="btn" onclick="newMotivation()">🎲 Мантра</button>
-                    <button class="btn" onclick="uglyMotivation()">💀 Угар</button>
+                    <button class="btn btn-success" onclick="saveSettings()">💾 Сохранить</button>
+                    <button class="btn" onclick="exportData()">📤 Экспорт</button>
+                    <button class="btn" onclick="importData()">📥 Импорт</button>
                 </div>
-                <div style="text-align:center;font-size:15px;color:#3a5a7a;margin-top:10px;">
-                    💪 Побеждено хуёвых мыслей: <strong id="motivationCounter" style="color:#b5d6f0;">0</strong>
-                    <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-left:6px;">➕</button>
-                </div>
+                <div id="settingsMsg" style="color:#5aed8a;text-align:center;margin-top:6px;opacity:0;transition:0.4s;">✅ Сохранено!</div>
             </div>
-        </div>
-
-        <div class="footer">
-            ⚡ <strong>Дисциплина Тимбула</strong> · Кипр → Италия · B1 → B2 · IT Security
         </div>
 
     </div>
 
     <script>
         // ==========================================================
-        // ===== ВСЕ ДАТЫ В МСК =====
+        // ===== ДАТЫ =====
         function getMSKDate() {
             const now = new Date();
-            const mskTime = new Date(now.getTime() + (now.getTimezoneOffset() + 180) * 60000);
-            return mskTime;
+            const msk = new Date(now.getTime() + (now.getTimezoneOffset() + 180) * 60000);
+            return msk;
         }
 
         function getMSKDateStr() {
-            const d = getMSKDate();
-            return d.toLocaleDateString('ru-RU');
-        }
-
-        function getMSKDayOfWeek() {
-            const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-            return days[getMSKDate().getDay()];
+            return getMSKDate().toLocaleDateString('ru-RU');
         }
 
         // ==========================================================
-        // ===== ДЕНЬ (по МСК) =====
-        (function() {
-            const now = getMSKDate();
-            let start = localStorage.getItem('startDateMSK');
-            if (!start) {
-                start = now.toISOString();
-                localStorage.setItem('startDateMSK', start);
-            }
-            const startDate = new Date(start);
-            const diff = Math.floor((now - startDate) / (1000 * 60 * 60 * 24)) + 1;
-            document.getElementById('dayDisplay').textContent = 'День ' + diff;
-        })();
+        // ===== ИНИЦИАЛИЗАЦИЯ =====
+        let appData = JSON.parse(localStorage.getItem('timbul_os')) || {};
 
+        function saveAppData() {
+            localStorage.setItem('timbul_os', JSON.stringify(appData));
+        }
+
+        function initApp() {
+            if (!appData.startDate) {
+                appData.startDate = getMSKDate().toISOString();
+            }
+            if (!appData.history) appData.history = [];
+            if (!appData.projects) appData.projects = [];
+            if (!appData.achievements) appData.achievements = {};
+            if (!appData.english) appData.english = { words: 0, progress: 0 };
+            if (!appData.uni) appData.uni = { docs: 0, ielts: 0 };
+            if (!appData.body) appData.body = { weight: 75, protein: 0, calories: 0, workouts: 0, muscles: { chest: 0,
+                    arms: 0, back: 0, abs: 0 } };
+            if (!appData.xp) appData.xp = 0;
+            if (!appData.level) appData.level = 1;
+            if (!appData.today) {
+                appData.today = {
+                    date: getMSKDateStr(),
+                    workout: false,
+                    words: 0,
+                    protein: 0,
+                    calories: 0,
+                    study: false
+                };
+            }
+            if (appData.today.date !== getMSKDateStr()) {
+                // сохраняем в историю
+                const dayData = {
+                    date: appData.today.date,
+                    workout: appData.today.workout,
+                    words: appData.today.words,
+                    protein: appData.today.protein,
+                    calories: appData.today.calories,
+                    study: appData.today.study,
+                    xp: appData.xp
+                };
+                appData.history.push(dayData);
+                if (appData.history.length > 365) appData.history.shift();
+                appData.today = {
+                    date: getMSKDateStr(),
+                    workout: false,
+                    words: 0,
+                    protein: 0,
+                    calories: 0,
+                    study: false
+                };
+            }
+            saveAppData();
+            updateAll();
+        }
+
+        // ==========================================================
+        // ===== ОБНОВЛЕНИЕ =====
+        function updateAll() {
+            updateDayDisplay();
+            updateLevelXP();
+            updateStats();
+            updateBody();
+            updateEnglish();
+            updateUni();
+            updateProjects();
+            updateAchievements();
+            updateQuickStats();
+            updateCharStats();
+        }
+
+        function updateDayDisplay() {
+            const start = new Date(appData.startDate);
+            const now = getMSKDate();
+            const diff = Math.floor((now - start) / (1000 * 60 * 60 * 24)) + 1;
+            document.getElementById('dayDisplay').textContent = 'День ' + diff;
+        }
+
+        function updateLevelXP() {
+            const lvl = appData.level || 1;
+            const xp = appData.xp || 0;
+            const xpNeeded = lvl * 100;
+            document.getElementById('levelDisplay').textContent = lvl;
+            document.getElementById('xpDisplay').textContent = xp + ' / ' + xpNeeded;
+            document.getElementById('xpBar').style.width = Math.min(100, (xp / xpNeeded) * 100) + '%';
+
+            // прогресс дня
+            const today = appData.today;
+            let done = 0;
+            let total = 5;
+            if (today.workout) done++;
+            if (today.study) done++;
+            if (today.words >= 5) done++;
+            if (today.protein >= 100) done++;
+            if (today.calories >= 1800) done++;
+            const pct = Math.round((done / total) * 100);
+            document.getElementById('dayProgressText').textContent = pct + '%';
+            document.getElementById('dayProgressBar').style.width = pct + '%';
+        }
+
+        function updateCharStats() {
+            const body = appData.body || {};
+            const eng = appData.english || {};
+            const uni = appData.uni || {};
+            const projects = appData.projects || [];
+            const totalWorkouts = appData.history.filter(h => h.workout).length + (appData.today.workout ? 1 : 0);
+            const bodyPct = Math.min(100, Math.round((totalWorkouts / 100) * 100));
+            const studyPct = Math.min(100, Math.round((uni.docs + uni.ielts) / 2));
+            const engPct = Math.min(100, eng.progress || 0);
+            const projPct = projects.length > 0 ? Math.round(projects.reduce((s, p) => s + (p.progress || 0), 0) / projects
+                .length) : 0;
+            const discPct = Math.min(100, Math.round((appData.history.filter(h => h.workout || h.study).length / Math.max(1,
+                appData.history.length)) * 100));
+
+            document.getElementById('statBody').textContent = bodyPct + '%';
+            document.getElementById('statStudy').textContent = studyPct + '%';
+            document.getElementById('statEnglish').textContent = engPct + '%';
+            document.getElementById('statProjects').textContent = projPct + '%';
+            document.getElementById('statDiscipline').textContent = discPct + '%';
+        }
+
+        function updateStats() {
+            const history = appData.history || [];
+            const today = appData.today;
+            const totalWorkouts = history.filter(h => h.workout).length + (today.workout ? 1 : 0);
+            const totalWords = history.reduce((s, h) => s + (h.words || 0), 0) + (today.words || 0);
+            const perfectDays = history.filter(h => h.workout && h.words >= 5 && h.protein >= 100 && h.calories >= 1800)
+            .length;
+            const avgProtein = history.length > 0 ? Math.round(history.reduce((s, h) => s + (h.protein || 0), 0) / history
+                .length) : 0;
+            const streak = calcStreak();
+
+            document.getElementById('qsWorkouts').textContent = totalWorkouts;
+            document.getElementById('qsWords').textContent = totalWords;
+            document.getElementById('qsStreak').textContent = streak;
+            document.getElementById('qsProtein').textContent = avgProtein + 'г';
+
+            document.getElementById('statsWorkouts').textContent = totalWorkouts;
+            document.getElementById('statsWords').textContent = totalWords;
+            document.getElementById('statsPerfect').textContent = perfectDays;
+            document.getElementById('statsXP').textContent = appData.xp || 0;
+        }
+
+        function calcStreak() {
+            const history = appData.history || [];
+            if (history.length === 0) return 0;
+            const sorted = history.slice().sort((a, b) => new Date(a.date.split('.').reverse().join('-')) - new Date(b.date
+                .split('.').reverse().join('-')));
+            let streak = 0;
+            const today = getMSKDate();
+            today.setHours(0, 0, 0, 0);
+            for (let i = sorted.length - 1; i >= 0; i--) {
+                const parts = sorted[i].date.split('.');
+                const d = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+                d.setHours(0, 0, 0, 0);
+                const diff = (today - d) / (1000 * 60 * 60 * 24);
+                if (diff <= 1 && (sorted[i].workout || sorted[i].study)) {
+                    streak++;
+                } else if (diff > 1) {
+                    break;
+                }
+            }
+            return streak;
+        }
+
+        // ==========================================================
+        // ===== ТЕЛО =====
+        function updateBody() {
+            const body = appData.body || {};
+            const today = appData.today;
+            document.getElementById('bodyWeight').textContent = body.weight || 75;
+            document.getElementById('bodyProtein').textContent = today.protein || 0;
+            document.getElementById('bodyWorkouts').textContent = appData.history.filter(h => h.workout).length + (today
+                .workout ? 1 : 0);
+            document.getElementById('bodyCalories').textContent = today.calories || 0;
+
+            const muscles = body.muscles || { chest: 0, arms: 0, back: 0, abs: 0 };
+            const total = Math.round((muscles.chest + muscles.arms + muscles.back + muscles.abs) / 4);
+            document.getElementById('muscleTotal').textContent = total + '%';
+            document.getElementById('muscleChest').textContent = muscles.chest + '%';
+            document.getElementById('muscleArms').textContent = muscles.arms + '%';
+            document.getElementById('muscleBack').textContent = muscles.back + '%';
+            document.getElementById('muscleAbs').textContent = muscles.abs + '%';
+        }
+
+        function addWorkout() {
+            appData.today.workout = true;
+            addXP(20);
+            // прогресс мышц
+            const muscles = appData.body.muscles || { chest: 0, arms: 0, back: 0, abs: 0 };
+            const cycle = (appData.history.length % 3) + 1;
+            if (cycle === 1) muscles.chest = Math.min(100, muscles.chest + 5);
+            else if (cycle === 2) { muscles.back = Math.min(100, muscles.back + 5);
+                muscles.arms = Math.min(100, muscles.arms + 5); } else muscles.abs = Math.min(100, muscles.abs + 5);
+            appData.body.muscles = muscles;
+            saveAppData();
+            updateAll();
+        }
+
+        function addProtein(amount) {
+            appData.today.protein = (appData.today.protein || 0) + amount;
+            saveAppData();
+            updateAll();
+        }
+
+        function addCalories(amount) {
+            appData.today.calories = (appData.today.calories || 0) + amount;
+            saveAppData();
+            updateAll();
+        }
+
+        // ==========================================================
+        // ===== АНГЛИЙСКИЙ =====
+        function updateEnglish() {
+            const eng = appData.english || { words: 0, progress: 0 };
+            const settings = getSettings();
+            const totalWords = appData.history.reduce((s, h) => s + (h.words || 0), 0) + (appData.today.words || 0) + eng
+                .words;
+
+            let level = 'B1';
+            if (eng.progress > 66) level = 'C1';
+            else if (eng.progress > 33) level = 'B2';
+            document.getElementById('engLevel').textContent = level;
+            document.getElementById('engProgressText').textContent = Math.min(100, eng.progress) + '%';
+            document.getElementById('engProgressBar').style.width = Math.min(100, eng.progress) + '%';
+            document.getElementById('engWords').textContent = totalWords;
+            document.getElementById('engStreak').textContent = calcStreak();
+            document.getElementById('engToGoal').textContent = Math.max(0, settings.wordsGoal - totalWords);
+        }
+
+        function addEnglish(amount) {
+            const eng = appData.english || { words: 0, progress: 0 };
+            eng.progress = Math.min(100, (eng.progress || 0) + amount);
+            appData.english = eng;
+            addXP(5);
+            saveAppData();
+            updateAll();
+        }
+
+        function addWords(amount) {
+            appData.today.words = (appData.today.words || 0) + amount;
+            addXP(2);
+            saveAppData();
+            updateAll();
+        }
+
+        // ==========================================================
+        // ===== ПОСТУПЛЕНИЕ =====
+        function updateUni() {
+            const uni = appData.uni || { docs: 0, ielts: 0 };
+            document.getElementById('uniDocs').textContent = uni.docs + '%';
+            document.getElementById('uniDocsBar').style.width = uni.docs + '%';
+            document.getElementById('uniIelts').textContent = uni.ielts + '%';
+            document.getElementById('uniIeltsBar').style.width = uni.ielts + '%';
+            const total = Math.round((uni.docs + uni.ielts) / 2);
+            document.getElementById('uniTotal').textContent = total + '%';
+            document.getElementById('uniTotalBar').style.width = total + '%';
+        }
+
+        function addUniProgress(amount) {
+            const uni = appData.uni || { docs: 0, ielts: 0 };
+            uni.docs = Math.min(100, uni.docs + amount);
+            appData.uni = uni;
+            addXP(5);
+            saveAppData();
+            updateAll();
+        }
+
+        function addIelts(amount) {
+            const uni = appData.uni || { docs: 0, ielts: 0 };
+            uni.ielts = Math.min(100, uni.ielts + amount);
+            appData.uni = uni;
+            addXP(3);
+            saveAppData();
+            updateAll();
+        }
+
+        // ==========================================================
+        // ===== ПРОЕКТЫ =====
+        function updateProjects() {
+            const container = document.getElementById('projectsContainer');
+            const projects = appData.projects || [];
+            if (projects.length === 0) {
+                container.innerHTML = '<div style="color:#5a7a9a;text-align:center;padding:10px;">Нет проектов. Создай первый!</div>';
+                return;
+            }
+            container.innerHTML = projects.map((p, i) => `
+                <div class="project-item">
+                    <div>
+                        <div class="name">${p.name}</div>
+                        <div class="status ${p.progress >= 100 ? 'done' : 'inprogress'}">${p.progress >= 100 ? '✅ Завершён' : '⏳ В процессе'}</div>
+                    </div>
+                    <div style="width:120px;">
+                        <div class="progress-label"><span></span><strong>${p.progress}%</strong></div>
+                        <div class="progress-bar" style="height:4px;"><div class="fill blue" style="width:${p.progress}%;"></div></div>
+                    </div>
+                    <button class="btn btn-danger" style="font-size:11px;padding:2px 10px;" onclick="deleteProject(${i})">✕</button>
+                </div>
+            `).join('');
+        }
+
+        function addProject() {
+            const name = prompt('Название проекта:');
+            if (name && name.trim()) {
+                appData.projects.push({ name: name.trim(), progress: 0 });
+                saveAppData();
+                updateAll();
+            }
+        }
+
+        function deleteProject(index) {
+            if (confirm('Удалить проект?')) {
+                appData.projects.splice(index, 1);
+                saveAppData();
+                updateAll();
+            }
+        }
+
+        function advanceProjects() {
+            const projects = appData.projects || [];
+            if (projects.length === 0) return;
+            projects.forEach(p => {
+                p.progress = Math.min(100, p.progress + 10);
+                if (p.progress >= 100) addXP(10);
+            });
+            saveAppData();
+            updateAll();
+        }
+
+        // ==========================================================
+        // ===== ДОСТИЖЕНИЯ =====
+        const ACHIEVEMENTS_LIST = [
+            { id: 'first_workout', icon: '🥇', name: 'Первая тренировка', check: (s) => s.workouts >= 1 },
+            { id: 'streak_7', icon: '🔥', name: '7 дней подряд', check: (s) => s.streak >= 7 },
+            { id: 'streak_30', icon: '🔥', name: '30 дней подряд', check: (s) => s.streak >= 30 },
+            { id: 'words_100', icon: '📚', name: '100 слов', check: (s) => s.words >= 100 },
+            { id: 'words_1000', icon: '📚', name: '1000 слов', check: (s) => s.words >= 1000 },
+            { id: 'b2', icon: '🇬🇧', name: 'B2 достигнут', check: (s) => s.engProgress >= 34 },
+            { id: 'perfect_10', icon: '⭐', name: '10 идеальных дней', check: (s) => s.perfect >= 10 },
+            { id: 'project_5', icon: '🚀', name: '5 проектов', check: (s) => s.projects >= 5 },
+            { id: 'level_5', icon: '⬆️', name: 'Уровень 5', check: (s) => s.level >= 5 },
+            { id: 'level_10', icon: '⬆️', name: 'Уровень 10', check: (s) => s.level >= 10 },
+        ];
+
+        function updateAchievements() {
+            const grid = document.getElementById('achGrid');
+            const stats = getAchievementStats();
+            const unlocked = appData.achievements || {};
+
+            grid.innerHTML = ACHIEVEMENTS_LIST.map(a => {
+                const isUnlocked = a.check(stats);
+                if (isUnlocked && !unlocked[a.id]) {
+                    unlocked[a.id] = true;
+                    appData.achievements = unlocked;
+                    saveAppData();
+                }
+                return `
+                    <div class="ach-item ${isUnlocked ? 'unlocked' : 'locked'}">
+                        <span class="icon">${a.icon}</span>
+                        <div>${a.name}</div>
+                        ${isUnlocked ? '<div style="font-size:10px;color:#5aed8a;">✅</div>' : '<div style="font-size:10px;color:#3a5a7a;">🔒</div>'}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function getAchievementStats() {
+            const history = appData.history || [];
+            const today = appData.today;
+            const workouts = history.filter(h => h.workout).length + (today.workout ? 1 : 0);
+            const words = history.reduce((s, h) => s + (h.words || 0), 0) + (today.words || 0);
+            const perfect = history.filter(h => h.workout && h.words >= 5 && h.protein >= 100 && h.calories >= 1800).length;
+            const streak = calcStreak();
+            const engProgress = (appData.english || {}).progress || 0;
+            const projects = (appData.projects || []).length;
+            const level = appData.level || 1;
+            return { workouts, words, perfect, streak, engProgress, projects, level };
+        }
+
+        // ==========================================================
+        // ===== XP И УРОВЕНЬ =====
+        function addXP(amount) {
+            appData.xp = (appData.xp || 0) + amount;
+            const needed = (appData.level || 1) * 100;
+            if (appData.xp >= needed) {
+                appData.xp -= needed;
+                appData.level = (appData.level || 1) + 1;
+                // проверка достижения уровня
+                updateAchievements();
+            }
+            saveAppData();
+        }
+
+        // ==========================================================
+        // ===== БЫСТРЫЕ ДЕЙСТВИЯ =====
+        function quickAction(action) {
+            switch (action) {
+                case 'workout':
+                    addWorkout();
+                    break;
+                case 'words':
+                    addWords(5);
+                    break;
+                case 'study':
+                    appData.today.study = true;
+                    addXP(10);
+                    saveAppData();
+                    updateAll();
+                    break;
+                case 'protein':
+                    addProtein(10);
+                    break;
+                case 'calories':
+                    addCalories(200);
+                    break;
+                case 'reset':
+                    if (confirm('Сбросить сегодняшний день?')) {
+                        appData.today = {
+                            date: getMSKDateStr(),
+                            workout: false,
+                            words: 0,
+                            protein: 0,
+                            calories: 0,
+                            study: false
+                        };
+                        saveAppData();
+                        updateAll();
+                    }
+                    break;
+            }
+        }
+
+        // ==========================================================
+        // ===== НАСТРОЙКИ =====
+        function getSettings() {
+            return {
+                protein: parseInt(localStorage.getItem('settingProtein')) || 140,
+                calMin: parseInt(localStorage.getItem('settingCalMin')) || 1800,
+                calMax: parseInt(localStorage.getItem('settingCalMax')) || 2100,
+                wordsGoal: parseInt(localStorage.getItem('settingWordsGoal')) || 1000,
+                weight: parseInt(localStorage.getItem('settingWeight')) || 75,
+                theme: localStorage.getItem('settingTheme') || 'dark'
+            };
+        }
+
+        function saveSettings() {
+            localStorage.setItem('settingProtein', document.getElementById('settingProtein').value);
+            localStorage.setItem('settingCalMin', document.getElementById('settingCalMin').value);
+            localStorage.setItem('settingCalMax', document.getElementById('settingCalMax').value);
+            localStorage.setItem('settingWordsGoal', document.getElementById('settingWordsGoal').value);
+            localStorage.setItem('settingWeight', document.getElementById('settingWeight').value);
+            localStorage.setItem('settingTheme', document.getElementById('settingTheme').value);
+            appData.body.weight = parseInt(document.getElementById('settingWeight').value);
+            saveAppData();
+            const msg = document.getElementById('settingsMsg');
+            msg.style.opacity = '1';
+            setTimeout(() => msg.style.opacity = '0', 2500);
+            updateAll();
+        }
+
+        function loadSettings() {
+            const settings = getSettings();
+            document.getElementById('settingProtein').value = settings.protein;
+            document.getElementById('settingCalMin').value = settings.calMin;
+            document.getElementById('settingCalMax').value = settings.calMax;
+            document.getElementById('settingWordsGoal').value = settings.wordsGoal;
+            document.getElementById('settingWeight').value = settings.weight;
+            document.getElementById('settingTheme').value = settings.theme;
+        }
+
+        // ==========================================================
+        // ===== ЭКСПОРТ / ИМПОРТ =====
+        function exportData() {
+            const data = JSON.stringify(appData, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `timbul_os_backup_${getMSKDateStr().replace(/\./g, '_')}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    try {
+                        const data = JSON.parse(ev.target.result);
+                        appData = data;
+                        saveAppData();
+                        alert('✅ Данные импортированы!');
+                        updateAll();
+                    } catch (err) {
+                        alert('❌ Ошибка: ' + err.message);
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+
+        // ==========================================================
         // ===== ВКЛАДКИ =====
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -787,389 +1327,16 @@
                 this.classList.add('active');
                 document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
                 document.getElementById(this.dataset.tab).classList.add('active');
+                // обновляем графики при переключении на статистику
+                if (this.dataset.tab === 'tab-stats') updateStats();
             });
         });
 
-        // ===== ЧЕК-ЛИСТ =====
-        function loadChecklist() {
-            document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
-                const key = 'check_' + cb.parentElement.textContent.trim().slice(0, 30);
-                if (localStorage.getItem(key) === 'true') cb.checked = true;
-                cb.addEventListener('change', function() {
-                    localStorage.setItem('check_' + this.parentElement.textContent.trim().slice(0, 30), this
-                        .checked);
-                    autoSaveDay();
-                });
-            });
-        }
-        loadChecklist();
-
-        function resetChecklist() {
-            if (confirm('Сбросить чек-лист?')) {
-                document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
-                    cb.checked = false;
-                    localStorage.removeItem('check_' + cb.parentElement.textContent.trim().slice(0, 30));
-                });
-                autoSaveDay();
-            }
-        }
-
         // ==========================================================
-        // ===== ТРЕНИРОВКА (галочка) =====
-        let workoutDone = localStorage.getItem('workoutDone') === 'true';
-
-        function updateWorkoutButton() {
-            const btn = document.getElementById('workoutToggleBtn');
-            if (workoutDone) {
-                btn.textContent = '✅ Да';
-                btn.style.color = '#5aed8a';
-            } else {
-                btn.textContent = '⭕ Нет';
-                btn.style.color = '#b57a7a';
-            }
-        }
-
-        function toggleWorkout() {
-            workoutDone = !workoutDone;
-            localStorage.setItem('workoutDone', workoutDone);
-            updateWorkoutButton();
-            autoSaveDay();
-        }
-        updateWorkoutButton();
-
-        // ==========================================================
-        // ===== АВТОСОХРАНЕНИЕ =====
-        function getChecklistData() {
-            const checks = document.querySelectorAll('.checklist input[type="checkbox"]');
-            let done = 0;
-            checks.forEach(cb => { if (cb.checked) done++; });
-            return { total: checks.length, done: done };
-        }
-
-        function autoSaveDay() {
-            const day = document.getElementById('dayDisplay').textContent;
-            const checks = getChecklistData();
-            const data = {
-                day: day,
-                calories: parseInt(localStorage.getItem('stat_calories')) || 0,
-                protein: parseInt(localStorage.getItem('stat_protein')) || 0,
-                words: parseInt(localStorage.getItem('stat_words')) || 0,
-                workouts: workoutDone ? 1 : 0,
-                checks_done: checks.done,
-                checks_total: checks.total,
-                date: getMSKDateStr(),
-                engProgress: parseInt(localStorage.getItem('engProgress')) || 0
-            };
-
-            let history = JSON.parse(localStorage.getItem('history')) || [];
-            const today = getMSKDateStr();
-            const existing = history.findIndex(h => h.date === today);
-            if (existing !== -1) {
-                history[existing] = data;
-            } else {
-                history.push(data);
-            }
-            localStorage.setItem('history', JSON.stringify(history));
-            renderHistory();
-            renderStreak();
-            renderChart();
-        }
-
-        // ==========================================================
-        // ===== ПРОГРЕСС АНГЛИЙСКОГО =====
-        let engProgress = parseInt(localStorage.getItem('engProgress')) || 0;
-
-        function updateEngDisplay() {
-            const p = engProgress;
-            const b1 = Math.min(100, Math.round((p / 33) * 100));
-            const b2 = Math.min(100, Math.round(((p - 33) / 33) * 100));
-            const c1 = Math.min(100, Math.round(((p - 66) / 34) * 100));
-
-            document.getElementById('b1Fill').style.width = Math.min(100, b1) + '%';
-            document.getElementById('b1Percent').textContent = Math.min(100, b1) + '%';
-            document.getElementById('b2Fill').style.width = Math.max(0, Math.min(100, b2)) + '%';
-            document.getElementById('b2Percent').textContent = Math.max(0, Math.min(100, b2)) + '%';
-            document.getElementById('c1Fill').style.width = Math.max(0, Math.min(100, c1)) + '%';
-            document.getElementById('c1Percent').textContent = Math.max(0, Math.min(100, c1)) + '%';
-
-            let level = 'B1';
-            if (p > 66) level = 'C1';
-            else if (p > 33) level = 'B2';
-            document.getElementById('currentLevelDisplay').textContent = level;
-
-            let progressToB2 = 0;
-            if (p <= 33) progressToB2 = Math.round((p / 33) * 100);
-            else progressToB2 = 100;
-            document.getElementById('levelProgressText').textContent = progressToB2 + '%';
-        }
-
-        function addProgress(amount) {
-            if (engProgress < 100) {
-                engProgress = Math.min(100, engProgress + amount);
-                localStorage.setItem('engProgress', engProgress);
-                updateEngDisplay();
-                autoSaveDay();
-            }
-        }
-
-        function resetProgress() {
-            if (confirm('Сбросить прогресс английского?')) {
-                engProgress = 0;
-                localStorage.setItem('engProgress', 0);
-                updateEngDisplay();
-                autoSaveDay();
-            }
-        }
-        updateEngDisplay();
-
-        // ==========================================================
-        // ===== СЧЁТЧИКИ =====
-        const statKeys = ['calories', 'protein', 'words'];
-
-        function loadStats() {
-            statKeys.forEach(key => {
-                const val = parseInt(localStorage.getItem('stat_' + key)) || 0;
-                document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = val;
-            });
-            // подгружаем тренировку
-            workoutDone = localStorage.getItem('workoutDone') === 'true';
-            updateWorkoutButton();
-        }
-        loadStats();
-
-        function updateStat(key) {
-            const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
-            let val = parseInt(input.value) || 0;
-            if (val <= 0) return;
-            const current = parseInt(localStorage.getItem('stat_' + key)) || 0;
-            localStorage.setItem('stat_' + key, current + val);
-            document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = current + val;
-            input.value = 0;
-            autoSaveDay();
-        }
-
-        function resetStats() {
-            if (confirm('Сбросить счётчики на сегодня?')) {
-                statKeys.forEach(key => {
-                    localStorage.setItem('stat_' + key, 0);
-                    document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = 0;
-                });
-                workoutDone = false;
-                localStorage.setItem('workoutDone', false);
-                updateWorkoutButton();
-                autoSaveDay();
-            }
-        }
-
-        // ==========================================================
-        // ===== СОХРАНЕНИЕ ДНЯ (ручное) =====
-        function saveDayStats() {
-            autoSaveDay();
-            const msg = document.getElementById('saveMsg');
-            msg.classList.add('show');
-            setTimeout(() => msg.classList.remove('show'), 2500);
-        }
-
-        // ==========================================================
-        // ===== ИСТОРИЯ =====
-        function isPerfectDay(data) {
-            const proteinOk = (data.protein || 0) >= 140;
-            const caloriesOk = (data.calories || 0) >= 1800 && (data.calories || 0) <= 2100;
-            const workoutOk = (data.workouts || 0) === 1;
-            const wordsOk = (data.words || 0) >= 5;
-            return proteinOk && caloriesOk && workoutOk && wordsOk;
-        }
-
-        function renderHistory() {
-            const history = JSON.parse(localStorage.getItem('history')) || [];
-            const tbody = document.getElementById('historyBody');
-            if (history.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#3a5a7a;padding:12px;">Нет данных</td></tr>';
-                return;
-            }
-            const sorted = history.slice().reverse();
-            tbody.innerHTML = sorted.map(h => {
-                const perfect = isPerfectDay(h);
-                const engLevel = h.engProgress || 0;
-                let engText = 'B1';
-                if (engLevel > 66) engText = 'C1';
-                else if (engLevel > 33) engText = 'B2';
-                return `<tr class="day-row">
-                    <td><strong>${h.day}</strong> <span class="weekday">${h.date || ''}</span></td>
-                    <td>${h.calories || 0}</td>
-                    <td>${h.protein || 0}</td>
-                    <td>${h.words || 0}</td>
-                    <td>${h.workouts ? '✅' : '❌'}</td>
-                    <td>${h.checks_done || 0}/${h.checks_total || 5}</td>
-                    <td>${perfect ? '⭐ ИДЕАЛ' : ''}</td>
-                    <td>${engText}</td>
-                </tr>`;
-            }).join('');
-        }
-
-        function clearHistory() {
-            if (confirm('Очистить всю историю?')) {
-                localStorage.removeItem('history');
-                renderHistory();
-                renderStreak();
-                renderChart();
-            }
-        }
-
-        // ==========================================================
-        // ===== ГРАФИК =====
-        function renderChart() {
-            const history = JSON.parse(localStorage.getItem('history')) || [];
-            const svg = document.getElementById('progressChart');
-            if (history.length === 0) {
-                svg.innerHTML =
-                    `<text x="300" y="45" text-anchor="middle" fill="#3a5a7a" font-size="12">Нет данных</text>`;
-                return;
-            }
-
-            const sorted = history.slice().slice(-10);
-            let points = '';
-            let labels = '';
-            const w = 600,
-                h = 80,
-                pad = 20;
-            const step = (w - pad * 2) / Math.max(1, sorted.length - 1);
-
-            sorted.forEach((item, i) => {
-                const x = pad + i * step;
-                const val = (item.checks_done || 0) / Math.max(1, item.checks_total || 5);
-                const y = h - pad - val * (h - pad * 2);
-                points += `${x},${y} `;
-                labels += `<text x="${x}" y="${h - 4}" text-anchor="middle" fill="#3a5a7a" font-size="7">${item.day}</text>`;
-            });
-
-            svg.innerHTML = `
-                <polyline points="${points}" fill="none" stroke="#5a8db5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                ${points.split(' ').map(p => {
-                    const [x, y] = p.split(',');
-                    return `<circle cx="${x}" cy="${y}" r="3" fill="#5a8db5" opacity="0.8"/>`;
-                }).join('')}
-                ${labels}
-            `;
-        }
-
-        // ==========================================================
-        // ===== СЕРИЯ =====
-        function renderStreak() {
-            const history = JSON.parse(localStorage.getItem('history')) || [];
-            if (history.length === 0) {
-                document.getElementById('streakCount').textContent = '0';
-                document.getElementById('streakDays').innerHTML = '';
-                document.getElementById('streakRecord').textContent = '0';
-                return;
-            }
-
-            const sorted = history.slice().sort((a, b) => {
-                const da = new Date(a.date.split('.').reverse().join('-'));
-                const db = new Date(b.date.split('.').reverse().join('-'));
-                return da - db;
-            });
-
-            let streak = 0;
-            let record = parseInt(localStorage.getItem('streakRecord')) || 0;
-            const today = getMSKDate();
-            today.setHours(0, 0, 0, 0);
-
-            for (let i = sorted.length - 1; i >= 0; i--) {
-                const parts = sorted[i].date.split('.');
-                const d = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
-                d.setHours(0, 0, 0, 0);
-                const diff = (today - d) / (1000 * 60 * 60 * 24);
-                if (diff <= 1 && sorted[i].checks_done > 0) {
-                    streak++;
-                } else if (diff > 1) {
-                    break;
-                }
-            }
-
-            if (streak > record) {
-                record = streak;
-                localStorage.setItem('streakRecord', record);
-            }
-
-            document.getElementById('streakCount').textContent = streak;
-            document.getElementById('streakRecord').textContent = record;
-
-            const daysContainer = document.getElementById('streakDays');
-            daysContainer.innerHTML = '';
-            const dayNames = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-            for (let i = 6; i >= 0; i--) {
-                const d = new Date(today);
-                d.setDate(d.getDate() - i);
-                const dateStr = d.toLocaleDateString('ru-RU');
-                const found = sorted.find(h => h.date === dateStr);
-                const dot = document.createElement('div');
-                dot.className = 'day-dot';
-                if (found && found.checks_done > 0) {
-                    dot.classList.add('done');
-                    dot.textContent = '✓';
-                } else if (i === 0) {
-                    dot.classList.add('today');
-                    dot.textContent = '•';
-                } else {
-                    dot.textContent = '•';
-                }
-                dot.title = dayNames[d.getDay()] + ' ' + dateStr;
-                daysContainer.appendChild(dot);
-            }
-        }
-
-        // ==========================================================
-        // ===== МОТИВАЦИЯ =====
-        const motivations = [
-            '«Тимбул — это дисциплина. Я делаю.»',
-            '«Хуй пизда залупа, но Тимбул идёт дальше.»',
-            '«Красный аттестат — база, Тимбул.»',
-            '«B1 — временно. Завтра B2, послезавтра Кипр.»',
-            '«Страшно? Похуй. Я — Тимбул, я делаю.»',
-            '«Кипр ждёт, Италия ждёт. Вставай, Тимбул.»',
-            '«Тимбул — это бренд победы.»',
-            '«Тимбул не сдаётся. Тимбул идёт до конца.»',
-            '«Если не я, то кто? Если не сейчас, то когда?»',
-            '«Тимбул, ты круче, чем думаешь.»'
-        ];
-        const ugly = [
-            '«Хуй пизда залупа волосатая, Тимбул — красавчик!»',
-            '«Залупа — она и в Африке залупа. А Тимбул — молодец!»',
-            '«Пизда тебе, Тимбул, если не сделаешь. А сделаешь — красава.»',
-            '«Хуй там плавал, а Тимбул на Кипр поедет!»',
-            '«Волосатая залупа — не помеха IT Security, Тимбул!»',
-            '«Тимбул — бог, даже если бог обосрался. Делай.»',
-            '«Тимбул, ты такой крутой, что у залупы волосы дыбом!»',
-            '«Пиздец, Тимбул, но ты справишься!»',
-            '«Хуй с горы, а Тимбул с планом — вот это сила!»'
-        ];
-
-        function newMotivation() {
-            document.getElementById('motivationDisplay').textContent = motivations[Math.floor(Math.random() * motivations
-            .length)];
-        }
-
-        function uglyMotivation() {
-            document.getElementById('motivationDisplay').textContent = ugly[Math.floor(Math.random() * ugly.length)];
-        }
-
-        let winCount = parseInt(localStorage.getItem('winCount')) || 0;
-        document.getElementById('motivationCounter').textContent = winCount;
-
-        function incMotivationCounter() {
-            winCount++;
-            localStorage.setItem('winCount', winCount);
-            document.getElementById('motivationCounter').textContent = winCount;
-        }
-
-        // ==========================================================
-        // ===== ЗАГРУЗКА =====
-        renderHistory();
-        renderStreak();
-        renderChart();
-        setTimeout(autoSaveDay, 300);
-        console.log('⚡ Дисциплина Тимбула загружена! (МСК)');
+        // ===== ЗАПУСК =====
+        loadSettings();
+        initApp();
+        console.log('🖥️ Тимбул OS загружена!');
     </script>
 </body>
 </html>
